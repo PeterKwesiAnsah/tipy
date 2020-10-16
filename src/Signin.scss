@@ -10,19 +10,22 @@ padding: 5rem;
 }
 
 
+
 .signin{
 display: grid;
 grid-template-columns: repeat(2,1fr);
 width: 100%;
 height: 100%;
-background-color: beige;
+background-color:#ffff;
 border-radius: 1rem;
 overflow: hidden;
-
-
-
+box-shadow: 0.5rem 1rem 2rem rgba(0, 0, 0, 0.5) ;
 
 &__form{
+    display: grid;
+    place-items: center;
+    padding: 6rem;
+    justify-items: normal;
 
 }
 
@@ -34,12 +37,79 @@ overflow: hidden;
     background-size: cover;
     background-color:#1A6C7A;
     background-blend-mode: soft-light;
+    display: grid;
+    grid-template-columns: 1fr;
+    place-items: center;
+    gap: 1.5rem 0;
+    color: honeydew;
+    letter-spacing: 0.5px;
+}
+ 
+&__welcome{
+display: flex;
+flex-direction: column;
+    width: 50%;
+    height: 20%;
+    font-size: 2rem;
+    justify-content: flex-end;
+
+
+}
+&__text{
+    font-weight: 400;
+    color:#00637B;
 
 }
 
+&__img{
+    width: 30%;
+
 }
 
 
+}
+
+.form{
+    display: grid;
+    align-self: self-start;
+    font-size: 1.5rem;
+    row-gap: 2.5rem;   
+    & > *{
+    width: 25rem;
+
+    label{
+        font-size: 1.5rem;
+    }
+    }
+
+
+
+
+
+}
+
+.text{
+
+&--light{
+    align-self: self-end;
+    font-size: 1.7rem;
+
+}
+
+&--bold{
+    align-self: self-start;
+    font-size: 2.5rem;
+    font-weight: bold;
+
+}
+
+
+
+}
+
+svg{
+    align-self: start;
+}
 
 
 

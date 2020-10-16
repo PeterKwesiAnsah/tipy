@@ -1,13 +1,19 @@
 import React from 'react'
-import logoB from '../img/logoB.png'
+
+import Form from './Form'
 import '../Signin.scss'
 
 const Signin = () => {
     return (
         <div className='signin__background'>
         <div className='signin'>
-        <div className='signin__form'></div>
-        <div className='signin__box'> </div>
+        <div className='signin__form'>
+            <Form></Form>
+        </div>
+        <div className='signin__box'>
+            <span className='text--light'>what you can do</span>
+            <span className='text--bold'>Does not depend on where you are</span>
+             </div>
         </div>
         </div>
       
