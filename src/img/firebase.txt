@@ -1,0 +1,23 @@
+https://firebase.google.com/docs/database/web/read-and-write?authuser=0
+https://firebase.google.com/docs/database/web/lists-of-data?authuser=0
+
+
+
+
+//creates a reference to users node/List
+var UsersRef =firebase.database().ref('users')
+
+// Create a new User reference with an auto-generated id
+var newUserRef = UsersRef.push();
+newUserRef.set({
+//.....Add the rest of the user data
+});
+
+
+/*
+
+    users for the web are two
+
+
+
+*/

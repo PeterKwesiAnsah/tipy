@@ -4,27 +4,13 @@ import logoB from '../img/logoB.png';
 import '../Signin.scss';
 import TextField from '@material-ui/core/TextField';
 import { ReactComponent as Circle } from '../img/circle.svg';
-import { Button } from '@material-ui/core';
+import { Button, Typography} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core';
 import { UserContext } from '../App';
-// Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  var firebaseConfig = {
-    apiKey: "AIzaSyBzSxCofWxvc8_2sQyFelJyraMAwohJrlg",
-    authDomain: "tipy-d9238.firebaseapp.com",
-    databaseURL: "https://tipy-d9238.firebaseio.com",
-    projectId: "tipy-d9238",
-    storageBucket: "tipy-d9238.appspot.com",
-    messagingSenderId: "129149327590",
-    appId: "1:129149327590:web:25ac71c740fd906d14c327",
-    measurementId: "G-QBM27EHXEJ"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
+import {Link} from 'react-router-dom'
+import classnames from 'classnames'
 
-
-
+//IF SIGIN IS NULL THE USER HASN'T TRIED LOGGING IN ELSE FAILED /SUCCESS
 
 const useStyles = makeStyles({
 	button: {
@@ -33,16 +19,33 @@ const useStyles = makeStyles({
 		fontSize: '1.15rem',
 	},
 	root: {
+		'&:hover': {},
 		'& input': {
 			fontSize: '1.5rem',
 		},
 		'& label': {
 			fontSize: '1.8rem',
 		},
+		'& .MuiFormHelperText-root': {
+			fontSize: '1.5rem',
+		},
+
+		'& a:visited':{
+		color:'#32CD32'
+
+		},
+		'& a':{
+			color:'#32CD32'
+			}
+	},
+	text: {
+		alignSelf: 'self-start',
+		fontSize:'1.5rem',
+		fontWeight:'400',
 	},
 });
 
-const Form = () => {
+const AuthUser = () => {
 	const classes = useStyles();
 
 	//using useContext to get Global UserState
@@ -60,22 +63,14 @@ const Form = () => {
 	const signin = async ({ target }) => {
 		if (user.password || user.email) {
 			try {
-				 await firebase.auth().signInWithEmailAndPassword(user.email, user.password);
-
-				 //Welcome User
+				await firebase
+					.auth()
+					.signInWithEmailAndPassword(user.email, user.password);
+				setUser({ ...user, signin: 'success' });
+				alert('Welcome');
+				//Welcome User
 			} catch (error) {
-
-				//Bounce User
-				// Handle Errors here.
-				var errorCode = error.code;
-				var errorMessage = error.message;
-				// [START_EXCLUDE]
-				if (errorCode === 'auth/wrong-password') {
-					alert('Wrong password.');
-				} else {
-					alert(errorMessage);
-				}
-				console.log(error);
+				setUser({ ...user, password: '', signin: 'failed' });
 			}
 		}
 	};
@@ -91,7 +86,7 @@ const Form = () => {
 					className="signin__img"
 				></img>
 			</div>
-			<form className="form" noValidate autoComplete="off">
+			<form className="form" autoComplete="off">
 				<TextField
 					label="Email"
 					type="email"
@@ -100,6 +95,7 @@ const Form = () => {
 					value={user.email}
 					onChange={handleChange}
 					required
+					error={user.signin === 'failed'}
 				/>
 				<TextField
 					label="Password"
@@ -108,6 +104,10 @@ const Form = () => {
 					value={user.password}
 					onChange={handleChange}
 					required
+					error={user.signin === 'failed'}
+					helperText={
+						user.signin === 'failed' && 'Incorrect Email/Password.'
+					}
 				/>
 				<Button
 					className={classes.button}
@@ -119,8 +119,11 @@ const Form = () => {
 					Login
 				</Button>
 			</form>
+			<Typography variant="h6" className={classnames(classes.text,classes.root)} color="primary">
+				Don't have an Account?...<Link to='signUp'>SignUp</Link> Here.
+			</Typography>
 		</>
 	);
 };
 
-export default Form;
+export default AuthUser;

@@ -1,0 +1,51 @@
+{
+	"users": {
+		"one": {
+            "stringbefore@":{
+                "id":1603157977611,
+                "name":"pantang LLW",
+                "email":"test123@gmail.com",
+                "token":"token"
+            }
+        },
+		"two": {
+
+        }
+	},
+
+	"customers": {
+        "mtJX0dji3mMVCTVb1EFzFxAIPAn2":{
+            "id":"LLW OR CSWA ID",
+            "name":"Rachel Coffie" 
+        }
+    },
+	"meters": {
+        "mtJX0dji3mMVCTVb1EFzFxAIPAn2":{
+            "id":"LLW OR CSWA ID",
+            "meterNo":300623109,
+            "prevReading":656,
+            "bill":50,
+            "town":"Kasoa"
+        }
+    },
+"location":{
+    "mtJX0dji3mMVCTVb1EFzFxAIPAn2":{
+        "g":-0.2054,
+        "l":5.7092
+    }
+
+},
+	"usertypes": {
+		"one": "CWSA",
+		"two": "LLM"
+    },
+    
+    "readings":{
+        "mtJX0dji3mMVCTVb1EFzFxAIPAn2":{
+            "id":"LLW OR CSWA ID",
+            "image":"https:firebase........",
+            "textReading":""
+        }
+
+    }
+}

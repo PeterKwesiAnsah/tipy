@@ -1,14 +1,12 @@
 import React from 'react'
-
-import Form from './Form'
+import AuthUser from './AuthUser'
 import '../Signin.scss'
-
 const Signin = () => {
     return (
         <div className='signin__background'>
         <div className='signin'>
         <div className='signin__form'>
-            <Form></Form>
+            <AuthUser></AuthUser>
         </div>
         <div className='signin__box'>
             <span className='text--light'>what you can do</span>
