@@ -5,6 +5,7 @@ import SignUp from './components/SignUp';
 import { Route, Switch } from 'react-router-dom';
 import './App.scss';
 import Message from './components/Message';
+import Home from './components/Home'
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 var firebaseConfig = {
@@ -23,6 +24,11 @@ firebase.analytics();
 
 // Get a reference to the database service
 const database = firebase.database();
+
+firebase.auth().onAuthStateChanged((user)=>{
+	console.log(user)
+
+})
 
 
 // console.log(firebase.auth().currentUser)
@@ -70,6 +76,9 @@ const App = () => {
           <Route path='/success'>
             <Message></Message>
           </Route>
+		  <Route path='/home'>
+			  <Home></Home>
+		  </Route>
 				</Switch>
 			</UserContext.Provider>
 		</div>

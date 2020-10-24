@@ -4,11 +4,11 @@ import logoB from '../img/logoB.png';
 import '../Signin.scss';
 import TextField from '@material-ui/core/TextField';
 import { ReactComponent as Circle } from '../img/circle.svg';
-import { Button, Typography} from '@material-ui/core';
+import { Button, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core';
 import { UserContext } from '../App';
-import {Link} from 'react-router-dom'
-import classnames from 'classnames'
+import { Link, useHistory } from 'react-router-dom';
+import classnames from 'classnames';
 
 //IF SIGIN IS NULL THE USER HASN'T TRIED LOGGING IN ELSE FAILED /SUCCESS
 
@@ -30,24 +30,27 @@ const useStyles = makeStyles({
 			fontSize: '1.5rem',
 		},
 
-		'& a:visited':{
-		color:'#32CD32'
-
+		'& a:visited': {
+			color: '#32CD32',
 		},
-		'& a':{
-			color:'#32CD32'
-			}
+		'& a': {
+			color: '#32CD32',
+		},
 	},
 	text: {
 		alignSelf: 'self-start',
-		fontSize:'1.5rem',
-		fontWeight:'400',
+		fontSize: '1.5rem',
+		fontWeight: '400',
 	},
 });
+
+
 
 const AuthUser = () => {
 	const classes = useStyles();
 
+	//creating a history object for routing
+	let history = useHistory();
 	//using useContext to get Global UserState
 	const { user, setUser } = useContext(UserContext);
 
@@ -66,9 +69,7 @@ const AuthUser = () => {
 				await firebase
 					.auth()
 					.signInWithEmailAndPassword(user.email, user.password);
-				setUser({ ...user, signin: 'success' });
-				alert('Welcome');
-				//Welcome User
+				history.push('/home');
 			} catch (error) {
 				setUser({ ...user, password: '', signin: 'failed' });
 			}
@@ -105,9 +106,7 @@ const AuthUser = () => {
 					onChange={handleChange}
 					required
 					error={user.signin === 'failed'}
-					helperText={
-						user.signin === 'failed' && 'Incorrect Email/Password.'
-					}
+					helperText={user.signin === 'failed' && 'Incorrect Email/Password.'}
 				/>
 				<Button
 					className={classes.button}
@@ -119,8 +118,12 @@ const AuthUser = () => {
 					Login
 				</Button>
 			</form>
-			<Typography variant="h6" className={classnames(classes.text,classes.root)} color="primary">
-				Don't have an Account?...<Link to='signUp'>SignUp</Link> Here.
+			<Typography
+				variant="h6"
+				className={classnames(classes.text, classes.root)}
+				color="primary"
+			>
+				Don't have an Account?...<Link to="signUp">SignUp</Link> Here.
 			</Typography>
 		</>
 	);

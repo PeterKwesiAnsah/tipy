@@ -9,4 +9,3 @@ const Upload = () => {
 }
 
 export default Upload
-//C

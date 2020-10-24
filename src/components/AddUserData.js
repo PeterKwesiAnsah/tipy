@@ -21,10 +21,6 @@ const useStyles = makeStyles({
 		'& .MuiInputLabel-outlined.MuiInputLabel-shrink': {
 			transform: 'translate(12px, -13px) scale(0.75)',
 		},
-
-		//   .MuiInputLabel-outlined.MuiInputLabel-shrink {
-		//     transform: translate(12px, -9px) scale(0.75);
-		// }
 	},
 	form: {
 		display: 'grid',
