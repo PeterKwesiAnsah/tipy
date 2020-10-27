@@ -10,10 +10,11 @@ const addCustom = (file, firebase) => {
 	parse(file, {
 		skipEmptyLines: true,
 		complete: (results) => {
-			console.log(results.data);
 			results.data.forEach(
 				([name, meterNum, town, prevReading, bill], index) => {
 					if (index > 0) {
+                        //files comes with headers so exclude them and persist the rest
+                        //create a new node under customerRef use the unique key to create unique nodes under meters node
 						const newCustomerRef = customRef.push();
 						const newCustomKey = newCustomerRef.key;
 						newCustomerRef.set({
