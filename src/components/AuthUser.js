@@ -69,7 +69,7 @@ const AuthUser = () => {
 				await firebase
 					.auth()
 					.signInWithEmailAndPassword(user.email, user.password);
-				history.push('/home');
+				history.push('/home/dashboard');
 			} catch (error) {
 				setUser({ ...user, password: '', signin: 'failed' });
 			}

@@ -15,9 +15,6 @@ const useStyles = makeStyles({
 const Home = () => {
 	const classes = useStyles();
 
-	// //get the current pathname
-	// const { pathname } = useLocation();
-
 	return (
 		<div>
 			<Topbar></Topbar>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
 import {
 	Box,
@@ -11,6 +11,11 @@ import {
 	makeStyles,
 } from '@material-ui/core';
 import { Search as SearchIcon } from 'react-feather';
+import { Link } from 'react-router-dom';
+import { CSVLink } from 'react-csv';
+
+import exportData from '../../helpers/exportData';
+import getDate from '../../helpers/dateGen';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -33,49 +38,67 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const Toolbar = ({ search, className, ...rest }) => {
+const Toolbar = ({ search, className, data, ...rest }) => {
 	const classes = useStyles();
 
 	const { search: searchValue, setSearch } = search;
-//handles updating the search state of the customers parent component
+	//handles updating the search state of the customers parent component
 	const handleChange = ({ target }) => {
 		setSearch(target.value);
 	};
 
+	//handles the export of customer data
+	const handleClick = () => {};
 	return (
-		<div className={clsx(classes.root, className)} {...rest}>
-			<Box display="flex" justifyContent="flex-end">
-				<Button className={classes.importButton}>Import</Button>
-				<Button className={classes.exportButton}>Export</Button>
-				<Button color="primary" variant="contained">
-					Add customer
-				</Button>
-			</Box>
-			<Box mt={3}>
-				<Card>
-					<CardContent>
-						<Box maxWidth={500}>
-							<TextField
-								fullWidth
-								InputProps={{
-									startAdornment: (
-										<InputAdornment position="start">
-											<SvgIcon fontSize="small" color="action">
-												<SearchIcon />
-											</SvgIcon>
-										</InputAdornment>
-									),
-								}}
-								placeholder="Search customer"
-								variant="outlined"
-								onChange={handleChange}
-								value={searchValue}
-							/>
-						</Box>
-					</CardContent>
-				</Card>
-			</Box>
-		</div>
+		<>
+			<div className={clsx(classes.root, className)} {...rest}>
+				<Box display="flex" justifyContent="flex-end">
+					<Button
+						className={classes.importButton}
+						component={Link}
+						to="/import/customers"
+					>
+						Import
+					</Button>
+					<CSVLink
+						data={exportData(data)}
+						filename={`CustomersExport${getDate()}.csv`}
+					>
+						<Button className={classes.exportButton} onClick={handleClick}>
+							Export
+						</Button>
+					</CSVLink>
+
+					<Button color="primary" variant="contained">
+						Add customer
+					</Button>
+				</Box>
+				<Box mt={3}>
+					<Card>
+						<CardContent>
+							<Box maxWidth={500}>
+								<TextField
+									fullWidth
+									InputProps={{
+										startAdornment: (
+											<InputAdornment position="start">
+												<SvgIcon fontSize="small" color="action">
+													<SearchIcon />
+												</SvgIcon>
+											</InputAdornment>
+										),
+									}}
+									placeholder="Search customer"
+									variant="outlined"
+									onChange={handleChange}
+									value={searchValue}
+								/>
+							</Box>
+						</CardContent>
+					</Card>
+				</Box>
+			</div>
+		</>
 	);
 };
 

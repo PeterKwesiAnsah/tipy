@@ -4,6 +4,7 @@ import Toolbar from './Toolbar';
 import Results from './Results';
 import getCustom from '../../helpers/getCustom';
 import { UserContext } from '../../App';
+import CustomImport from '../../components/CustomImport';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -33,7 +34,7 @@ const Customers = () => {
 
 	return (
 		<div>
-			<Toolbar search={{search,setSearch}}></Toolbar>
+			<Toolbar search={{search,setSearch}} data={data}></Toolbar>
 			<Results data={data} search={search}></Results>
 		</div>
 	);

@@ -2,10 +2,11 @@ import * as firebase from 'firebase';
 import React, { useState, createContext } from 'react';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
+import CustomImport from './components/CustomImport';
 import { Route, Switch } from 'react-router-dom';
 import './App.scss';
 import Message from './components/Message';
-import Home from './components/Home'
+import Home from './components/Home';
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 // var firebaseConfig = {
@@ -20,16 +21,14 @@ import Home from './components/Home'
 // };
 
 var firebaseConfig = {
-    apiKey: "AIzaSyCvDT7gt_bWVen7puawDCi3OwLXV7AGlIU",
-    authDomain: "teeeepeeee-37145.firebaseapp.com",
-    databaseURL: "https://teeeepeeee-37145.firebaseio.com",
-    projectId: "teeeepeeee-37145",
-    storageBucket: "teeeepeeee-37145.appspot.com",
-    messagingSenderId: "774172888222",
-    appId: "1:774172888222:web:d9398f3786a44035ffff8f"
-  };
-
-
+	apiKey: 'AIzaSyCvDT7gt_bWVen7puawDCi3OwLXV7AGlIU',
+	authDomain: 'teeeepeeee-37145.firebaseapp.com',
+	databaseURL: 'https://teeeepeeee-37145.firebaseio.com',
+	projectId: 'teeeepeeee-37145',
+	storageBucket: 'teeeepeeee-37145.appspot.com',
+	messagingSenderId: '774172888222',
+	appId: '1:774172888222:web:d9398f3786a44035ffff8f',
+};
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
@@ -37,9 +36,6 @@ firebase.analytics();
 
 // Get a reference to the database service
 const database = firebase.database();
-
-
-
 
 //creating a context API  user
 export const UserContext = createContext();
@@ -50,7 +46,9 @@ const App = () => {
 
 	return (
 		<div className="App">
-			<UserContext.Provider value={{ user, setUser,firebase:{firebase,database} }}>
+			<UserContext.Provider
+				value={{ user, setUser, firebase: { firebase, database } }}
+			>
 				<Switch>
 					<Route path="/" exact>
 						<Login></Login>
@@ -58,12 +56,15 @@ const App = () => {
 					<Route path="/signUp">
 						<SignUp></SignUp>
 					</Route>
-          <Route path='/success'>
-            <Message></Message>
-          </Route>
-		  <Route path='/home'>
-			  <Home></Home>
-		  </Route>
+					<Route path="/success">
+						<Message></Message>
+					</Route>
+					<Route path="/home">
+						<Home></Home>
+					</Route>
+					<Route path="/import">
+						<CustomImport></CustomImport>
+					</Route>
 				</Switch>
 			</UserContext.Provider>
 		</div>

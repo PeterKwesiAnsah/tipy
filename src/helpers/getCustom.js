@@ -5,8 +5,13 @@ const getCustom = (firebase) => {
 		//get  the database reference to the customers node
 		const customRef = firebase.database().ref('customers');
 
+		 let userId;
 		//get the current userID
-		const userId = firebase.auth().currentUser.uid;
+		  firebase.auth().onAuthStateChanged((user) => {
+			userId=user.uid
+		});
+		
+		
 
 		//function gets data of customers based on the current user submitted data
 		customRef.once('value').then((snapshot) => {

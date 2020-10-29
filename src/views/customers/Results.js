@@ -13,11 +13,20 @@ const useStyles = makeStyles((theme) => ({
 		'& *': {
 			fontSize: 'inherit',
 		},
+
+		'& li .MuiMenuItem-root': {
+			fontSize: '1.5rem',
+		},
 	},
 	formControl: {
 		margin: theme.spacing(1),
 		minWidth: 120,
+
+		'& *': {
+			fontSize: '1.5rem',
+		},
 	},
+
 	selectEmpty: {
 		marginTop: theme.spacing(2),
 	},
@@ -42,8 +51,9 @@ const Results = ({ data, search }) => {
 	};
 
 	//handles filtering data
-    const filtered = data.filter(({ name }) => name.toLowerCase().includes(search.toLowerCase()));
-
+	const filtered = data.filter(({ name }) =>
+		name.toLowerCase().includes(search.toLowerCase())
+	);
 
 	//filter the data here
 	return (
@@ -56,7 +66,7 @@ const Results = ({ data, search }) => {
 					value={perPage}
 					onChange={handleChange}
 				>
-					<MenuItem value={10}>10</MenuItem>
+					<MenuItem value={5}>5</MenuItem>
 					<MenuItem value={20}>20</MenuItem>
 					<MenuItem value={30}>30</MenuItem>
 				</Select>
