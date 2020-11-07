@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import {
 	makeStyles,
 	Card,
@@ -13,6 +13,8 @@ import Link from '@material-ui/core/Link';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import WarningIcon from '@material-ui/icons/Warning';
 
+import addCustom from '../helpers/addCustom';
+import UserContext from './../App';
 
 const useStyles = makeStyles({
 	root: {
@@ -76,8 +78,32 @@ const useStyles = makeStyles({
 	},
 });
 
-const CustomImport = () => {
+const CustomImport = ({ firebase, user }) => {
+	const fileRef = useRef();
+
+	const [hideBtn, setHideBtn] = useState(true);
+	const [customImport, setImport] = useState(false);
+
 	const classes = useStyles();
+
+	const handleChange = () => {
+		setHideBtn(false);
+	};
+
+	useEffect(() => {
+		let fileInput = fileRef.current;
+		if (customImport) {
+			//submit file upon click of the import button
+			addCustom(fileInput.files[0], firebase, user[0]);
+
+			//after submission disable the button and clear the file input
+			// fileInput.files = [];
+			setHideBtn(true);
+		}
+	}, [customImport]);
+	const handleImport = () => {
+		setImport(true);
+	};
 	return (
 		<>
 			<Topbar></Topbar>
@@ -113,15 +139,16 @@ const CustomImport = () => {
 							type="file"
 							className={classes.input}
 							inputProps={{ accept: '.csv' }}
-							onChange={({ target }) => {
-								console.log(target.files[0]);
-							}}
+							onChange={handleChange}
+							inputRef={fileRef}
 						></TextField>
 						<div style={{ textAlign: 'right' }}>
 							<Button
 								variant="contained"
 								color="primary"
 								className={classes.button}
+								onClick={handleImport}
+								disabled={hideBtn}
 							>
 								<Typography variant="h6">Import</Typography>
 							</Button>

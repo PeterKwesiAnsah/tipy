@@ -1,12 +1,11 @@
 import * as firebase from 'firebase';
-import React, { useContext } from 'react';
+import React, {useState } from 'react';
 import logoB from '../img/logoB.png';
 import '../Signin.scss';
 import TextField from '@material-ui/core/TextField';
 import { ReactComponent as Circle } from '../img/circle.svg';
 import { Button, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core';
-import { UserContext } from '../App';
 import { Link, useHistory } from 'react-router-dom';
 import classnames from 'classnames';
 
@@ -24,7 +23,7 @@ const useStyles = makeStyles({
 			fontSize: '1.5rem',
 		},
 		'& label': {
-			fontSize: '1.8rem',
+			fontSize: '1.6rem',
 		},
 		'& .MuiFormHelperText-root': {
 			fontSize: '1.5rem',
@@ -42,17 +41,24 @@ const useStyles = makeStyles({
 		fontSize: '1.5rem',
 		fontWeight: '400',
 	},
+	svg:{
+		marginBottom:'4rem'
+	}
 });
 
 
 
 const AuthUser = () => {
+
+	//creating a global state
+	const [user, setUser] = useState({ email: '', password: '', signin: null });
+	
+	
 	const classes = useStyles();
 
 	//creating a history object for routing
 	let history = useHistory();
-	//using useContext to get Global UserState
-	const { user, setUser } = useContext(UserContext);
+	
 
 	//handles userinputs
 	const handleChange = ({ target }) => {
@@ -78,7 +84,7 @@ const AuthUser = () => {
 
 	return (
 		<>
-			<Circle></Circle>
+			<Circle className={classes.svg}></Circle>
 			<div className="signin__welcome">
 				<span className="signin__text">Welcome to</span>
 				<img
@@ -95,7 +101,6 @@ const AuthUser = () => {
 					className={classes.root}
 					value={user.email}
 					onChange={handleChange}
-					required
 					error={user.signin === 'failed'}
 				/>
 				<TextField
@@ -104,7 +109,6 @@ const AuthUser = () => {
 					className={classes.root}
 					value={user.password}
 					onChange={handleChange}
-					required
 					error={user.signin === 'failed'}
 					helperText={user.signin === 'failed' && 'Incorrect Email/Password.'}
 				/>

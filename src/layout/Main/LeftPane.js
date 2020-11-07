@@ -9,6 +9,7 @@ import {
 	Settings as SettingsIcon,
 	User as UserIcon,
 	Users as UsersIcon,
+	Clipboard as MeterIcon
 } from 'react-feather';
 
 const user = {
@@ -55,6 +56,11 @@ const items = [
 		title: 'Customers',
 	},
 	{
+		href:'/home/meters',
+		icon:MeterIcon,
+		title:'Meters'
+	},
+	{
 		href: '/home/account',
 		icon: UserIcon,
 		title: 'Account',
@@ -63,7 +69,8 @@ const items = [
 		href: '/home/settings',
 		icon: SettingsIcon,
 		title: 'Settings',
-	},
+	}
+
 ];
 
 const LeftPane = () => {

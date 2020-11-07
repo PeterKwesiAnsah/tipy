@@ -23,7 +23,7 @@ const useStyles = makeStyles({
 	},
 });
 
-const Topbar = () => {
+const Topbar = ({ logout }) => {
 	const classes = useStyles();
 
 	return (
@@ -36,7 +36,7 @@ const Topbar = () => {
 				alt="Tippy......Errand Location Technology"
 				className={classes.img}
 			></img>
-			<IconButton color="inherit">
+			<IconButton color="inherit" onClick={logout}>
 				<InputIcon fontSize="large" />
 			</IconButton>
 		</div>

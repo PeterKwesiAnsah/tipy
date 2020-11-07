@@ -1,23 +1,23 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Box, Container, makeStyles } from '@material-ui/core';
+import {makeStyles } from '@material-ui/core';
 import Toolbar from './Toolbar';
 import Results from './Results';
 import getCustom from '../../helpers/getCustom';
 import { UserContext } from '../../App';
-import CustomImport from '../../components/CustomImport';
+
 
 const useStyles = makeStyles((theme) => ({
 	root: {
-		backgroundColor: theme.palette.background.dark,
-		minHeight: '100%',
-		paddingBottom: theme.spacing(3),
-		paddingTop: theme.spacing(3),
+		backgroundColor:''
 	},
 }));
 
 const Customers = () => {
+
+
+	const classes=useStyles()
 	//customers data state from firebase based on the current user
-    const [data, setData] = useState([]);
+	const [data, setData] = useState([]);
     
     //search string
     const [search,setSearch]=useState('')
@@ -25,15 +25,30 @@ const Customers = () => {
 	//Get the Global firebase  objects
 	const { firebase } = useContext(UserContext).firebase;
 
+	//Get the LLW id of the current user
+	const [id]=useContext(UserContext).user
+
 	//get data from firebase based on the current User
 	useEffect(() => {
-		getCustom(firebase).then((data) => {
+
+		//determines if the component is mounted or not 
+		let mount=true
+		
+		getCustom(firebase,id).then((data) => {
+
+			//update state only if the component is mounted
+			if(mount)
 			setData(data);
 		});
-	}, []);
+
+		return ()=>{
+			mount=false
+
+		}
+	});
 
 	return (
-		<div>
+		<div className={classes.root}>
 			<Toolbar search={{search,setSearch}} data={data}></Toolbar>
 			<Results data={data} search={search}></Results>
 		</div>

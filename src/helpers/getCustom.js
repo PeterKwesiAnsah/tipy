@@ -1,22 +1,14 @@
-const getCustom = (firebase) => {
+const getCustom = (firebase, id) => {
 	return new Promise((resolve, reject) => {
 		//data for customers
 		let rows = [];
 		//get  the database reference to the customers node
 		const customRef = firebase.database().ref('customers');
 
-		 let userId;
-		//get the current userID
-		  firebase.auth().onAuthStateChanged((user) => {
-			userId=user.uid
-		});
-		
-		
-
 		//function gets data of customers based on the current user submitted data
 		customRef.once('value').then((snapshot) => {
 			const customersData = Object.entries(snapshot.val()).filter(
-				([key, value]) => value.usersID === userId
+				([key, value]) => value.llwID === id
 			);
 
 			customersData.forEach(async ([key, customer], index, array) => {
@@ -33,6 +25,7 @@ const getCustom = (firebase) => {
 				rows.push({ id: customer.id, name: customer.name, ...custoMeterData });
 
 				if (index === array.length - 1) {
+					
 					resolve(rows);
 				}
 			});

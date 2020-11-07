@@ -1,5 +1,5 @@
-import * as firebase from 'firebase';
-import React, { useState, createContext } from 'react';
+import  firebase from 'firebase/app';
+import React, { useState, createContext, useEffect } from 'react';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import CustomImport from './components/CustomImport';
@@ -7,18 +7,8 @@ import { Route, Switch } from 'react-router-dom';
 import './App.scss';
 import Message from './components/Message';
 import Home from './components/Home';
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-// var firebaseConfig = {
-// 	apiKey: 'AIzaSyBzSxCofWxvc8_2sQyFelJyraMAwohJrlg',
-// 	authDomain: 'tipy-d9238.firebaseapp.com',
-// 	databaseURL: 'https://tipy-d9238.firebaseio.com',
-// 	projectId: 'tipy-d9238',
-// 	storageBucket: 'tipy-d9238.appspot.com',
-// 	messagingSenderId: '129149327590',
-// 	appId: '1:129149327590:web:25ac71c740fd906d14c327',
-// 	measurementId: 'G-QBM27EHXEJ',
-// };
+import getID from './helpers/getID';
+import { useHistory,useLocation } from 'react-router-dom';
 
 var firebaseConfig = {
 	apiKey: 'AIzaSyCvDT7gt_bWVen7puawDCi3OwLXV7AGlIU',
@@ -37,18 +27,61 @@ firebase.analytics();
 // Get a reference to the database service
 const database = firebase.database();
 
+//get the current location
+
 //creating a context API  user
 export const UserContext = createContext();
 
 const App = () => {
-	//creating a global state
-	const [user, setUser] = useState({ email: '', password: '', signin: null });
+	//create a history object
+	const history = useHistory();
+
+	//user state for the user
+	const [user, setUser] = useState([]);
+
+
+
+useEffect(()=>{
+//creating a listener for listening when the route changes
+	history.listen(({pathname})=>{
+		if(pathname !== '/' && user.length > 0)
+		  console.log('not auth')
+		console.log('auth')
+
+	})
+
+},[])
+
+
+	useEffect(() => {
+		//creating a listener when the auth state chanages
+		firebase.auth().onAuthStateChanged((user) => {
+			if (user) {
+				getID(user.email, firebase).then((data) => {
+					setUser([data, user]);
+				})
+				
+			}
+//reset the user state
+			setUser([])
+		});
+
+		
+
+		// //creating an event listener on url location change so that unauthorized useers will be bounced back
+		// history.listen(({ pathname }) => {
+		// 	console.log('change')
+		// 	console.log(pathname)
+		// 	if (pathname !== '/' && user.length === 0) {
+		// 		//user isnt auth but accessing a route push user back to login
+		// 		history.push('/');
+		// 	}
+		// });
+	}, []);
 
 	return (
 		<div className="App">
-			<UserContext.Provider
-				value={{ user, setUser, firebase: { firebase, database } }}
-			>
+			<UserContext.Provider value={{ user, firebase: { firebase, database } }}>
 				<Switch>
 					<Route path="/" exact>
 						<Login></Login>
@@ -60,10 +93,10 @@ const App = () => {
 						<Message></Message>
 					</Route>
 					<Route path="/home">
-						<Home></Home>
+						<Home firebase={firebase}></Home>
 					</Route>
 					<Route path="/import">
-						<CustomImport></CustomImport>
+						<CustomImport firebase={firebase} user={user}></CustomImport>
 					</Route>
 				</Switch>
 			</UserContext.Provider>

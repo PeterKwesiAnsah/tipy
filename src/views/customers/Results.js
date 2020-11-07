@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 
 const columns = [
 	{ field: 'id', headerName: 'ID' },
-	{ field: 'name', headerName: 'Name', width: 130 },
+	{ field: 'name', headerName: 'Name', width: 170 },
 	{ field: 'meterNo', headerName: 'Meter No', width: 130 },
 	{ field: 'prevReading', headerName: 'Prev. Reading' },
 	{ field: 'town', headerName: 'Town' },
@@ -58,7 +58,7 @@ const Results = ({ data, search }) => {
 	//filter the data here
 	return (
 		<div style={{ height: 400, width: '80vw' }} className={classes.root}>
-			<FormControl className={classes.formControl}>
+			<FormControl className={classes.formControl} >
 				<InputLabel id="demo-simple-select-label">Rows Per Page</InputLabel>
 				<Select
 					labelId="demo-simple-select-label"
@@ -75,7 +75,6 @@ const Results = ({ data, search }) => {
 				columns={columns}
 				rows={filtered}
 				pageSize={perPage}
-				checkboxSelection
 			></DataGrid>
 		</div>
 	);
