@@ -18,16 +18,15 @@ const getCustom = (firebase, id) => {
 				//read the data for the reference
 				const snapshot = await custoMeterRef.once('value');
 
-				//get the data from the snapchat
+				//get the data from the snapchat		
 				const custoMeterData = snapshot.val();
 
 				//add the data into rows
 				rows.push({ id: customer.id, name: customer.name, ...custoMeterData });
-
-				if (index === array.length - 1) {
-					
-					resolve(rows);
+				if(index === array.length - 1){
+					resolve(rows)
 				}
+				
 			});
 		});
 	});

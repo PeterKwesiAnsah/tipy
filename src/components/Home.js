@@ -10,7 +10,6 @@ import Meter from '../views/meters/Meter';
 const useStyles = makeStyles({
 	main: {
 		display: 'flex',
-		height: '100vh',
 	},
 });
 

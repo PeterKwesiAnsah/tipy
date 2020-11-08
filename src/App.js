@@ -1,4 +1,4 @@
-import  firebase from 'firebase/app';
+import firebase from 'firebase/app';
 import React, { useState, createContext, useEffect } from 'react';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
@@ -8,7 +8,7 @@ import './App.scss';
 import Message from './components/Message';
 import Home from './components/Home';
 import getID from './helpers/getID';
-import { useHistory,useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 var firebaseConfig = {
 	apiKey: 'AIzaSyCvDT7gt_bWVen7puawDCi3OwLXV7AGlIU',
@@ -39,19 +39,12 @@ const App = () => {
 	//user state for the user
 	const [user, setUser] = useState([]);
 
-
-
-useEffect(()=>{
-//creating a listener for listening when the route changes
-	history.listen(({pathname})=>{
-		if(pathname !== '/' && user.length > 0)
-		  console.log('not auth')
-		console.log('auth')
-
-	})
-
-},[])
-
+	useEffect(() => {
+		//creating a listener for listening when the route changes
+		// history.listen(({pathname})=>{
+		// 	if(pathname !== '/' && user.length > 0)
+		// })
+	}, []);
 
 	useEffect(() => {
 		//creating a listener when the auth state chanages
@@ -59,24 +52,11 @@ useEffect(()=>{
 			if (user) {
 				getID(user.email, firebase).then((data) => {
 					setUser([data, user]);
-				})
-				
+				});
 			}
-//reset the user state
-			setUser([])
+			//reset the user state
+			setUser([]);
 		});
-
-		
-
-		// //creating an event listener on url location change so that unauthorized useers will be bounced back
-		// history.listen(({ pathname }) => {
-		// 	console.log('change')
-		// 	console.log(pathname)
-		// 	if (pathname !== '/' && user.length === 0) {
-		// 		//user isnt auth but accessing a route push user back to login
-		// 		history.push('/');
-		// 	}
-		// });
 	}, []);
 
 	return (

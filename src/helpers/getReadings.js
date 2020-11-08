@@ -1,7 +1,7 @@
 import getCustom from './getCustom';
 import update from './update'
 
-const getReadings = async (firebase, id) => {
+const getReadings = async (firebase, id,setReadings) => {
 	//data for meter  readings
 	let rows = [];
 	let readings = [];
@@ -25,19 +25,22 @@ const getReadings = async (firebase, id) => {
     });
     //update meter readings for the meters read
     update(rows,firebase)
-	rows.forEach(async ({ name, town, meterNo, ...rest }) => {
+	rows.forEach(async ({id, name, town, meterNo, ...rest },index,array) => {
         //Update meter nodes here
-        	
-	
 		const snapshot = await firebase
 			.database()
 			.ref('readings/' + meterNo)
 			.once('value');
 		const { reading, date, imageUrl } = snapshot.val();
 
-		readings.push({ name, imageUrl, reading, date, meterNo, town });
-	});
-	return [readings];
+		readings.push({ id,name, imageUrl, reading, date, meterNo, town });
+		if(index === array.length -1){
+			//set the readings 
+			 setReadings(readings)
+		}
+	
+	});	
+		
 };
 
 export default getReadings;

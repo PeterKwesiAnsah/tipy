@@ -5,6 +5,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import filters from '../../helpers/filters'
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -32,16 +33,8 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const columns = [
-	{ field: 'id', headerName: 'ID' },
-	{ field: 'name', headerName: 'Name', width: 170 },
-	{ field: 'meterNo', headerName: 'Meter No', width: 130 },
-	{ field: 'prevReading', headerName: 'Prev. Reading' },
-	{ field: 'town', headerName: 'Town' },
-	{ field: 'status', headerName: 'Status' },
-];
 
-const Results = ({ data, search }) => {
+const Results = ({ data, search,columns,type }) => {
 	const classes = useStyles();
 
 	const [perPage, setPerPage] = React.useState(5);
@@ -49,11 +42,9 @@ const Results = ({ data, search }) => {
 	const handleChange = (event) => {
 		setPerPage(event.target.value);
 	};
+ //handles filterimg of data
+	const filtered =filters[type](search,data)
 
-	//handles filtering data
-	const filtered = data.filter(({ name }) =>
-		name.toLowerCase().includes(search.toLowerCase())
-	);
 
 	//filter the data here
 	return (
