@@ -5,6 +5,8 @@ import Results from './Results';
 import getCustom from '../../helpers/getCustom';
 import { UserContext } from '../../App';
 import columns from '../../helpers/column';
+import useAutoFetch from '../../hooks/useAutoFetch';
+import getCount from '../../helpers/getCount';
 
 // const useStyles = makeStyles((theme) => ({
 // 	root: {
@@ -15,10 +17,10 @@ import columns from '../../helpers/column';
 const Customers = () => {
 	// const classes = useStyles();
 
-	const [autoFetch, setautoFetch] = useState(false);
+	// const [autoFetch, setautoFetch] = useState(false);
 
 	//customers data state from firebase based on the current user
-	const [data, setData] = useState([]);
+	const [data, setData, autoFetch] = useAutoFetch();
 
 	//search string
 	const [search, setSearch] = useState('');
@@ -29,18 +31,25 @@ const Customers = () => {
 	//Get the LLW id of the current user
 	const [id] = useContext(UserContext).user;
 
+	//
+	const [status, setStatus] = useContext(UserContext).count;
+
 	useEffect(() => {
-		setTimeout(() => {
-			//after 10s if the data stae hasn't updated force updates
-			if (data.length === 0) {
-				setautoFetch(true);
-			}
-		}, 8000);
-		//cleaning up
+		//determines if the component is mounted or not
+		let mount = true;
+		if (mount)
+			//update state only if the component is mounted
+			setStatus({
+				customers: data.length,
+				pending: getCount('pending', data),
+				read: getCount('read', data),
+				failed: getCount('failed', data),
+			});
+
 		return () => {
-			clearTimeout();
+			mount = false;
 		};
-	});
+	}, [data]);
 
 	//get data from firebase based on the current User
 	useEffect(() => {
@@ -59,7 +68,11 @@ const Customers = () => {
 
 	return (
 		<div>
-			<Toolbar search={{ search, setSearch }} data={data}></Toolbar>
+			<Toolbar
+				search={{ search, setSearch }}
+				data={data}
+				status={status}
+			></Toolbar>
 			<Results
 				data={data}
 				search={search}

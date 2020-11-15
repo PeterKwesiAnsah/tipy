@@ -47,8 +47,6 @@ const Toolbar = ({ search, className, data, ...rest }) => {
 		setSearch(target.value);
 	};
 
-	//handles the export of customer data
-	const handleClick = () => {};
 	return (
 		<>
 			<div className={clsx(classes.root, className)} {...rest}>
@@ -64,9 +62,7 @@ const Toolbar = ({ search, className, data, ...rest }) => {
 						data={exportData(data)}
 						filename={`CustomersExport${getDate()}.csv`}
 					>
-						<Button className={classes.exportButton} onClick={handleClick}>
-							Export
-						</Button>
+						<Button className={classes.exportButton}>Export</Button>
 					</CSVLink>
 
 					<Button color="primary" variant="contained">

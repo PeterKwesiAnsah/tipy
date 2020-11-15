@@ -1,11 +1,8 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import { Container, Grid, makeStyles } from '@material-ui/core';
-
-import Budget from './Budget';
-
+import { UserContext } from '../../App';
 import TasksProgress from './TasksProgress';
 import TotalCustomers from './TotalCustomers';
-import TotalProfit from '../meters/PendMeters';
 import TrafficByDevice from './StatusTracker';
 
 const useStyles = makeStyles((theme) => ({
@@ -27,14 +24,15 @@ const useStyles = makeStyles((theme) => ({
 		width:'100%',
 		display:'grid',
 		placeItems:'center',
-	
-
 
 	}
 }));
+//save count to local storage 
 
 const Dashboard = () => {
 	const classes = useStyles();
+	//get the global status count
+	const [status]=useContext(UserContext).count
 
 	return (
 		<div className={classes.root} title="Dashboard">
@@ -44,10 +42,10 @@ const Dashboard = () => {
 						<Budget />
 					</Grid> */}
 					<Grid item lg={3} sm={6} xl={3} xs={12}>
-						<TotalCustomers />
+						<TotalCustomers count={status.customers}/>
 					</Grid>
 					<Grid item lg={3} sm={6} xl={3} xs={12}>
-						<TasksProgress />
+						<TasksProgress count={status} />
 					</Grid>
 					{/* <Grid item lg={3} sm={6} xl={3} xs={12}>
 						<TotalProfit />

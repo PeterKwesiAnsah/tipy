@@ -4,32 +4,21 @@ import { UserContext } from '../../App';
 import getReadings from '../../helpers/getReadings';
 import Results from '../customers/Results';
 import columns from '../../helpers/column';
+import useAutoFetch from '../../hooks/useAutoFetch'
 const Meter = () => {
 	//Get the Global firebase  objects
 	const { firebase } = useContext(UserContext).firebase;
 
 	//Get the LLW id of the current user
 	const [id] = useContext(UserContext).user;
-	const [readings, setReadings] = useState([]);
-	const [autoFetch, setautoFetch] = useState(false);
+	const [readings, setReadings,autoFetch] = useAutoFetch();
+	// const [autoFetch, setautoFetch] = useState(false);
 
 	//search string state
 	const [search, setSearch] = useState('');
 
-	useEffect(() => {
-		setTimeout(() => {
-			if (readings.length === 0) {
-				setautoFetch(true);
-			}
-		}, 8000);
-
-		return () => {
-			clearTimeout();
-		};
-	});
 
 	//write a function to auto check
-
 	useEffect(() => {
 		//determines if the component is mounted or not
 		let mount = true;

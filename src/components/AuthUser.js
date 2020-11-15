@@ -1,5 +1,5 @@
 import * as firebase from 'firebase';
-import React, {useState } from 'react';
+import React, { useState } from 'react';
 import logoB from '../img/logoB.png';
 import '../Signin.scss';
 import TextField from '@material-ui/core/TextField';
@@ -41,24 +41,19 @@ const useStyles = makeStyles({
 		fontSize: '1.5rem',
 		fontWeight: '400',
 	},
-	svg:{
-		marginBottom:'4rem'
-	}
+	svg: {
+		marginBottom: '4rem',
+	},
 });
 
-
-
 const AuthUser = () => {
-
 	//creating a global state
 	const [user, setUser] = useState({ email: '', password: '', signin: null });
-	
-	
+
 	const classes = useStyles();
 
 	//creating a history object for routing
 	let history = useHistory();
-	
 
 	//handles userinputs
 	const handleChange = ({ target }) => {

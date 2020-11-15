@@ -12,11 +12,7 @@ import {
 	makeStyles,
 } from '@material-ui/core';
 import { Search as SearchIcon } from 'react-feather';
-import { Link } from 'react-router-dom';
-import { CSVLink } from 'react-csv';
-import getDate from '../../helpers/dateGen';
 
-import exportData from '../../helpers/exportData';
 
 const useStyles = makeStyles((theme) => ({
 	root: {

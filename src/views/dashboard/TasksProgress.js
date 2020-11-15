@@ -25,8 +25,12 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const TasksProgress = ({ className, ...rest }) => {
+const TasksProgress = ({ className,count, ...rest }) => {
   const classes = useStyles();
+  
+  const percentage=()=>{
+
+  }
 
   return (
     <Card
@@ -51,7 +55,7 @@ const TasksProgress = ({ className, ...rest }) => {
               color="textPrimary"
               variant="h3"
             >
-              75.5%
+              50%
             </Typography>
           </Grid>
           <Grid item>
@@ -62,7 +66,7 @@ const TasksProgress = ({ className, ...rest }) => {
         </Grid>
         <Box mt={3}>
           <LinearProgress
-            value={75.5}
+            value={50}
             variant="determinate"
           />
         </Box>

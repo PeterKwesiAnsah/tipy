@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useContext } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
 	makeStyles,
 	Card,
@@ -14,7 +14,7 @@ import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import WarningIcon from '@material-ui/icons/Warning';
 
 import addCustom from '../helpers/addCustom';
-import UserContext from './../App';
+
 
 const useStyles = makeStyles({
 	root: {
