@@ -7,6 +7,7 @@ import { UserContext } from '../../App';
 import columns from '../../helpers/column';
 import useAutoFetch from '../../hooks/useAutoFetch';
 import getCount from '../../helpers/getCount';
+// import useLocalStorage from '../../hooks/useLocalStorage';
 
 // const useStyles = makeStyles((theme) => ({
 // 	root: {
@@ -37,7 +38,7 @@ const Customers = () => {
 	useEffect(() => {
 		//determines if the component is mounted or not
 		let mount = true;
-		if (mount)
+		if (mount) {
 			//update state only if the component is mounted
 			setStatus({
 				customers: data.length,
@@ -45,6 +46,18 @@ const Customers = () => {
 				read: getCount('read', data),
 				failed: getCount('failed', data),
 			});
+			//update the local storage too
+			localStorage.setItem(
+				'count',
+				JSON.stringify({
+					customers: data.length,
+					pending: getCount('pending', data),
+					read: getCount('read', data),
+					failed: getCount('failed', data),
+				})
+			);
+			//add to local storage here too
+		}
 
 		return () => {
 			mount = false;

@@ -35,6 +35,7 @@ export default {
 					<Typography>{params.value}</Typography>
 				</span>
 			),
+			width: 170,
 		},
 	],
 	meters: [

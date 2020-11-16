@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import {
@@ -11,6 +11,7 @@ import {
 	colors,
 } from '@material-ui/core';
 import { Clipboard as MeterIcon } from 'react-feather';
+import UserContext from '../../App.js'
 
 const useStyles = makeStyles(() => ({
 	root: {
@@ -25,6 +26,9 @@ const useStyles = makeStyles(() => ({
 
 const TotalProfit = ({ className, ...rest }) => {
 	const classes = useStyles();
+
+	//get the pending status count
+console.log(useContext(UserContext))
 
 	return (
 		<Card className={clsx(classes.root, className)} {...rest}>

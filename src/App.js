@@ -9,6 +9,7 @@ import './App.scss';
 import Message from './components/Message';
 import Home from './components/Home';
 import getID from './helpers/getID';
+// import useLocalStorage from './hooks/useLocalStorage'
 // import { useHistory, useLocation } from 'react-router-dom';
 
 var firebaseConfig = {
@@ -39,14 +40,17 @@ const App = () => {
 
 	//user state for the user
 	const [user, setUser] = useState([]);
-
+//get the saved storage from local
+	const savedStorage = JSON.parse(localStorage.getItem('count'));
 	//user counts
-	const [count, setCount] = useState({
-		customers: 0,
-		pending: 0,
-		read: 0,
-		failed: 0,
-	});
+	const [count, setCount] = useState(
+		savedStorage || {
+			customers: 0,
+			pending: 0,
+			read: 0,
+			failed: 0,
+		}
+	);
 
 	useEffect(() => {
 		//creating a listener for listening when the route changes

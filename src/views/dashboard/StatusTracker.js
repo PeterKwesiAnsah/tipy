@@ -17,20 +17,24 @@ import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import BuildIcon from '@material-ui/icons/Build';
 
+
 const useStyles = makeStyles(() => ({
   root: {
     height: '100%'
   }
 }));
 
-const TrafficByDevice = ({ className, ...rest }) => {
+const StatusByCount = ({ className,count, ...rest }) => {
   const classes = useStyles();
   const theme = useTheme();
+
+//get the various count
+const {read,pending,failed}=count
 
   const data = {
     datasets: [
       {
-        data: [63, 15, 22],
+        data: [read, pending, failed],
         backgroundColor: [
           colors.green[500],
           colors.yellow[600],
@@ -69,21 +73,21 @@ const TrafficByDevice = ({ className, ...rest }) => {
   const devices = [
     {
       title: 'Read',
-      value: 63,
+      value: read,
       icon: CheckCircleIcon,
       color: colors.green[500]
     },
     {
       title: 'Pending',
-      value: 15,
+      value: pending,
       icon: BuildIcon,
       color: colors.yellow[600]
     },
     {
       title: 'Failed',
-      value: 23,
+      value: failed,
       icon: ErrorOutlineIcon,
-      color: colors.orange[600]
+      color: colors.red[600]
     }
   ];
 
@@ -142,8 +146,8 @@ const TrafficByDevice = ({ className, ...rest }) => {
   );
 };
 
-TrafficByDevice.propTypes = {
+StatusByCount.propTypes = {
   className: PropTypes.string
 };
 
-export default TrafficByDevice;
+export default StatusByCount;

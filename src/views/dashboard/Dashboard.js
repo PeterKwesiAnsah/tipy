@@ -1,9 +1,10 @@
 import React,{useContext} from 'react';
-import { Container, Grid, makeStyles } from '@material-ui/core';
+import { Container, Grid, makeStyles,Typography } from '@material-ui/core';
 import { UserContext } from '../../App';
 import TasksProgress from './TasksProgress';
 import TotalCustomers from './TotalCustomers';
-import TrafficByDevice from './StatusTracker';
+import StatusByCount from './StatusTracker';
+
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -52,7 +53,7 @@ const Dashboard = () => {
 					</Grid> */}
 					<div className={classes.center}>
 						<Grid item lg={4} md={6} xl={3} xs={12}>
-							<TrafficByDevice />
+						{status.customers ===0 ?<Typography>NO DATA FOUND TO DISPLAY CHART</Typography>: <StatusByCount  count={status}/>}	
 						</Grid>
 					</div>
 				</Grid>
