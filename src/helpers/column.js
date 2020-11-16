@@ -1,4 +1,18 @@
 import React from 'react';
+import { colors, Typography } from '@material-ui/core';
+
+const styles = {
+	//get the various colors for each status
+	read: {
+		color: colors.green[500],
+	},
+	pending: {
+		color: colors.yellow[600],
+	},
+	failed: {
+		color: colors.red[600],
+	},
+};
 
 export default {
 	customers: [
@@ -7,7 +21,21 @@ export default {
 		{ field: 'meterNo', headerName: 'Meter No', width: 130 },
 		{ field: 'prevReading', headerName: 'Prev. Reading', width: 170 },
 		{ field: 'town', headerName: 'Town' },
-		{ field: 'status', headerName: 'Status' },
+		{
+			field: 'status',
+			headerName: 'Status',
+			renderCell: (params) => (
+				<span
+					style={{
+						backgroundColor: styles[params.value].color,
+						padding: '1rem 2rem',
+						borderRadius: '1.5rem',
+					}}
+				>
+					<Typography>{params.value}</Typography>
+				</span>
+			),
+		},
 	],
 	meters: [
 		{ field: 'name', headerName: 'Name', width: 130 },
