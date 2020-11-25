@@ -1,4 +1,4 @@
-import React,{useContext} from 'react';
+import React, { useContext } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import {
@@ -11,7 +11,7 @@ import {
 	colors,
 } from '@material-ui/core';
 import { Clipboard as MeterIcon } from 'react-feather';
-import UserContext from '../../App.js'
+import { UserContext } from '../../App';
 
 const useStyles = makeStyles(() => ({
 	root: {
@@ -28,7 +28,7 @@ const TotalProfit = ({ className, ...rest }) => {
 	const classes = useStyles();
 
 	//get the pending status count
-console.log(useContext(UserContext))
+	const { pending } = useContext(UserContext).count[0];
 
 	return (
 		<Card className={clsx(classes.root, className)} {...rest}>
@@ -39,7 +39,7 @@ console.log(useContext(UserContext))
 							PENDING METERS
 						</Typography>
 						<Typography color="textPrimary" variant="h3">
-							23200
+							{pending}
 						</Typography>
 					</Grid>
 					<Grid item>
