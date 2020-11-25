@@ -5,7 +5,7 @@ import SignUp from './components/SignUp';
 import CustomImport from './components/CustomImport';
 import Export from './components/Export';
 import { Route, Switch } from 'react-router-dom';
-import './App.scss';
+import './App.css';
 import Message from './components/Message';
 import Home from './components/Home';
 import getID from './helpers/getID';

@@ -18,74 +18,67 @@
 	border-radius: 1rem;
 	overflow: hidden;
 	box-shadow: 0.5rem 1rem 2rem rgba(0, 0, 0, 0.5);
-
-	&__form {
-		display: grid;
-		place-items: center;
-		padding: 6rem;
-		justify-items: normal;
-	}
-
-	&__box {
-		background-image: url('./img/formImg.jpg');
-		height: 100%;
-		background-repeat: no-repeat;
-		background-position: center center;
-		background-size: cover;
-		background-color: #1a6c7a;
-		background-blend-mode: soft-light;
-		display: grid;
-		grid-template-columns: 1fr;
-		place-items: center;
-		gap: 1.5rem 0;
-		color: honeydew;
-		letter-spacing: 0.5px;
-	}
-
-	&__welcome {
-		display: flex;
-		flex-direction: column;
-		width: 50%;
-		height: 20%;
-		font-size: 2rem;
-		justify-content: flex-end;
-	}
-	&__text {
-		font-weight: 400;
-		color: #00637b;
-	}
-
-	&__img {
-		width: 30%;
-	}
 }
+.signin__form {
+	display: grid;
+	place-items: center;
+	padding: 6rem;
+	justify-items: normal;
+}
+.signin__box {
+	background-image: url('./img/formImg.jpg');
+	height: 100%;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+	background-color: #1a6c7a;
+	background-blend-mode: soft-light;
+	display: grid;
+	grid-template-columns: 1fr;
+	place-items: center;
+	gap: 1.5rem 0;
+	color: honeydew;
+	letter-spacing: 0.5px;
+}
+.signin__welcome {
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+	height: 20%;
+	font-size: 2rem;
+	justify-content: flex-end;
+}
+.signin__text {
+	font-weight: 400;
+	color: #00637b;
+}
+.signin__img {
+	width: 30%;
+}
+
 
 .form {
 	display: grid;
 	align-self: self-start;
 	font-size: 1.5rem;
 	row-gap: 2.5rem;
-	& > * {
-		width: 25rem;
-
-		label {
-			font-size: 1.5rem;
-		}
-	}
+}
+.form > * {
+	width: 25rem;
+}
+.form > * label {
+	font-size: 1.5rem;
+}
+.text--light {
+	align-self: self-end;
+	font-size: 1.7rem;
+}
+.text--bold {
+	align-self: self-start;
+	font-size: 2.5rem;
+	font-weight: bold;
 }
 
-.text {
-	&--light {
-		align-self: self-end;
-		font-size: 1.7rem;
-	}
-
-	&--bold {
-		align-self: self-start;
-		font-size: 2.5rem;
-		font-weight: bold;
-	}
-}
 
 /* radial-gradient(at center center, #153243 0%, #1A6C7A 100%), */
 /*

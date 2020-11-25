@@ -1,7 +1,7 @@
 import * as firebase from 'firebase';
 import React, { useState } from 'react';
 import logoB from '../img/logoB.png';
-import '../Signin.scss';
+import '../Signin.css';
 import TextField from '@material-ui/core/TextField';
 import { ReactComponent as Circle } from '../img/circle.svg';
 import { Button, Typography } from '@material-ui/core';

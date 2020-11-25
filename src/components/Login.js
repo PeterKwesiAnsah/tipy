@@ -1,6 +1,6 @@
 import React from 'react'
 import AuthUser from './AuthUser'
-import '../Signin.scss'
+import '../Signin.css'
 const Signin = () => {
     return (
         <div className='signin__background'>
