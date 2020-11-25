@@ -5,7 +5,7 @@ const Signin = () => {
     return (
         <div className='signin__background'>
         <div className='signin'>
-        <div className='signin__form'>
+        <div className='signin__form' style={{justifyItems:'self-start'}}>
             <AuthUser></AuthUser>
         </div>
         <div className='signin__box'>

@@ -23,7 +23,7 @@
 	display: grid;
 	place-items: center;
 	padding: 6rem;
-	justify-items:self-start;
+	justify-items:self-start  !important;
 }
 .signin__box {
 	background-image: url('./img/formImg.jpg');
