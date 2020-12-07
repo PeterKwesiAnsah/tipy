@@ -39,7 +39,6 @@ const TasksProgress = ({ className, count, ...rest }) => {
       percStr = String(perc);
       
 		}
-console.log( perc,percStr)
 		return [perc, percStr];
 	};
 
