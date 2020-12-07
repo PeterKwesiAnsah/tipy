@@ -9,7 +9,7 @@ const useAutoFetch = () => {
 			if (data.length === 0) {
 				setautoFetch(true);
 			}
-		}, 8000);
+		},5000);
 
 		return () => {
 			clearTimeout();
