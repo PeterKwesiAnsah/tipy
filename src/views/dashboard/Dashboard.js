@@ -4,6 +4,7 @@ import { UserContext } from '../../App';
 import TasksProgress from './TasksProgress';
 import TotalCustomers from './TotalCustomers';
 import StatusByCount from './StatusTracker';
+import NoData from '../../components/NoData'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -19,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
 		'& svg': {
 			width: '1.3em',
 			height: '1.3em',
+		
 		},
 	},
 	center:{
@@ -39,21 +41,16 @@ const Dashboard = () => {
 		<div className={classes.root} title="Dashboard">
 			<Container maxWidth={false}>
 				<Grid container spacing={3}>
-					{/* <Grid item lg={3} sm={6} xl={3} xs={12}>
-						<Budget />
-					</Grid> */}
+		
 					<Grid item lg={3} sm={6} xl={3} xs={12}>
 						<TotalCustomers count={status.customers}/>
 					</Grid>
 					<Grid item lg={3} sm={6} xl={3} xs={12}>
 						<TasksProgress count={status} />
 					</Grid>
-					{/* <Grid item lg={3} sm={6} xl={3} xs={12}>
-						<TotalProfit />
-					</Grid> */}
 					<div className={classes.center}>
 						<Grid item lg={4} md={6} xl={3} xs={12}>
-						{status.customers ===0 ?<Typography>NO DATA FOUND TO DISPLAY CHART</Typography>: <StatusByCount  count={status}/>}	
+						{status.customers ===0 ?<NoData></NoData>: <StatusByCount  count={status}/>}	
 						</Grid>
 					</div>
 				</Grid>
