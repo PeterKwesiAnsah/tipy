@@ -9,6 +9,7 @@ import './App.css';
 import Message from './components/Message';
 import Home from './components/Home';
 import getID from './helpers/getID';
+import axios from 'axios';
 // import useLocalStorage from './hooks/useLocalStorage'
 // import { useHistory, useLocation } from 'react-router-dom';
 
@@ -40,11 +41,11 @@ const App = () => {
 
 	//user state for the user
 	const [user, setUser] = useState([]);
-//get the saved storage from local
-	const savedStorage = JSON.parse(localStorage.getItem('count'));
+// //get the saved storage from local
+// 	const savedStorage = JSON.parse(localStorage.getItem('count'));
 	//user counts
 	const [count, setCount] = useState(
-		savedStorage || {
+	 {
 			customers: 0,
 			pending: 0,
 			read: 0,
@@ -57,6 +58,10 @@ const App = () => {
 		// history.listen(({pathname})=>{
 		// 	if(pathname !== '/' && user.length > 0)
 		// })
+
+		const fetchCount=()=>{
+
+		}
 	}, []);
 
 	useEffect(() => {
@@ -65,7 +70,20 @@ const App = () => {
 			if (user) {
 				getID(user.email, firebase).then((data) => {
 					setUser([data, user]);
+
+					//fetch count here
+					const fetchCount=async()=>{
+						const count = (await axios.get(`https://us-central1-tpwebsyeeee.cloudfunctions.net/app/web-dashboard/${data}`)).data
+						const {progress,...rest}=count
+						setCount(rest)
+					}
+
+
+					fetchCount()
 				});
+
+				
+
 			}
 			//reset the user state
 			setUser([]);

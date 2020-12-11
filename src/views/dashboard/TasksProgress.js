@@ -29,13 +29,13 @@ const TasksProgress = ({ className, count, ...rest }) => {
 	const classes = useStyles();
 
 	//get the status count for LLW
-	const { read, customers } = count;
+	const { read, customers ,failed} = count;
 	//calculates the meter readings
 	const percentage = () => {
 		let perc = 0;
 		let percStr = '0';
 		if (read > 0 && customers > 0) {
-			perc = Number((read / customers) * 100).toFixed(1);
+			perc = Number(((read+failed)/ customers) * 100).toFixed(1);
       percStr = String(perc);
       
 		}

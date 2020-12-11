@@ -46,16 +46,16 @@ const Customers = () => {
 				read: getCount('read', data),
 				failed: getCount('failed', data),
 			});
-			//update the local storage too
-			localStorage.setItem(
-				'count',
-				JSON.stringify({
-					customers: data.length,
-					pending: getCount('pending', data),
-					read: getCount('read', data),
-					failed: getCount('failed', data),
-				})
-			);
+			// //update the local storage too
+			// localStorage.setItem(
+			// 	'count',
+			// 	JSON.stringify({
+			// 		customers: data.length,
+			// 		pending: getCount('pending', data),
+			// 		read: getCount('read', data),
+			// 		failed: getCount('failed', data),
+			// 	})
+			// );
 			//add to local storage here too
 		}
 
