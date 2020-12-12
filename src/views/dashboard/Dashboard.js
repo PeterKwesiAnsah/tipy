@@ -1,10 +1,11 @@
 import React,{useContext} from 'react';
-import { Container, Grid, makeStyles,Typography } from '@material-ui/core';
+import { Container, Grid, makeStyles,Typography,Button } from '@material-ui/core';
 import { UserContext } from '../../App';
 import TasksProgress from './TasksProgress';
 import TotalCustomers from './TotalCustomers';
 import StatusByCount from './StatusTracker';
 import NoData from '../../components/NoData'
+import axios from 'axios';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -39,6 +40,9 @@ const Dashboard = () => {
 
 	return (
 		<div className={classes.root} title="Dashboard">
+			<Button variant="standard" onclick={()=>{
+				axios.get('http://us-central1-tpwebsyeeee.cloudfunctions.net/app/requestrds/1603702629482')
+			}}><Typography>Request Readings</Typography></Button>
 			<Container maxWidth={false}>
 				<Grid container spacing={3}>
 		
