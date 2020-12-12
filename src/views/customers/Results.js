@@ -66,6 +66,7 @@ const Results = ({ data, search,columns,type }) => {
 				columns={columns}
 				rows={filtered}
 				pageSize={perPage}
+				loading={filtered.length === 0 ? true:false}
 			></DataGrid>
 		</div>
 	);

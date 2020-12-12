@@ -23,6 +23,9 @@ const useStyles = makeStyles((theme) => ({
 			height: '1.3em',
 		
 		},
+		'& button':{
+			marginLeft:'auto'
+		}
 	},
 	center:{
 		width:'100%',
@@ -40,9 +43,12 @@ const Dashboard = () => {
 
 	return (
 		<div className={classes.root} title="Dashboard">
-			<Button variant="standard" onclick={()=>{
+			<div style={{textAlign:'right',marginBottom:'1.5rem',marginRight:'1rem'}}>
+			<Button variant="contained" color="primary" onclick={()=>{
 				axios.get('http://us-central1-tpwebsyeeee.cloudfunctions.net/app/requestrds/1603702629482')
 			}}><Typography>Request Readings</Typography></Button>
+			</div>
+			
 			<Container maxWidth={false}>
 				<Grid container spacing={3}>
 		
