@@ -16,7 +16,6 @@ const styles = {
 
 export default {
 	customers: [
-		{ field: 'id', headerName: 'ID' },
 		{ field: 'name', headerName: 'Name', width: 170 },
 		{ field: 'meterNo', headerName: 'Meter No', width: 130 },
 		{ field: 'prevReading', headerName: 'Prev. Reading', width: 170 },
@@ -42,11 +41,11 @@ export default {
 		{ field: 'name', headerName: 'Name', width: 130 },
 		{ field: 'meterNo', headerName: 'Meter No', width: 130 },
 		{ field: 'reading', headerName: 'CurrentReading', width: 130 },
-		// { field: 'prevreading', headerName: 'PrevReading', width: 130 },
-		// { field: 'bill', headerName: 'Bill', width: 170 },
-		// {field:'consum',headerName:'Consumption', width:130},
+		{ field: 'prevreading', headerName: 'PrevReading', width: 130 },
+		{ field: 'bill', headerName: 'Bill', width: 130 },
+		{field:'consum',headerName:'Consumption', width:130},
 		{ field: 'town', headerName: 'Town', width: 130 },
-		{ field: 'date', headerName: 'Date of Reading', width: 170 },
+		{ field: 'date', headerName: 'Date of Reading', width: 130 },
 
 	
 		{

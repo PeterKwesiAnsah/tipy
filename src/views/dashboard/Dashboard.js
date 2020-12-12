@@ -22,9 +22,6 @@ const useStyles = makeStyles((theme) => ({
 			width: '1.3em',
 			height: '1.3em',
 		
-		},
-		'& button':{
-			marginLeft:'auto'
 		}
 	},
 	center:{
@@ -32,7 +29,16 @@ const useStyles = makeStyles((theme) => ({
 		display:'grid',
 		placeItems:'center',
 
+	},
+	flex:{
+		display:'flex',
+		width:'100%',
+		margin:'2rem',
+		'& > div':{
+			marginRight:'inherit'
+		}
 	}
+	
 }));
 //save count to local storage 
 
@@ -51,13 +57,15 @@ const Dashboard = () => {
 			
 			<Container maxWidth={false}>
 				<Grid container spacing={3}>
-		
+					<div className={classes.flex}>
 					<Grid item lg={3} sm={6} xl={3} xs={12}>
 						<TotalCustomers count={status.customers}/>
 					</Grid>
 					<Grid item lg={3} sm={6} xl={3} xs={12}>
 						<TasksProgress count={status} />
 					</Grid>
+					</div>
+					
 					<div className={classes.center}>
 						<Grid item lg={4} md={6} xl={3} xs={12}>
 						{status.customers ===0 ?<NoData></NoData>: <StatusByCount  count={status}/>}	

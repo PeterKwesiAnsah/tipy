@@ -57,7 +57,7 @@ failures.push(failed[0])
 			.once('value');
 		const { reading, date, imageUrl } = snapshot.val();
 
-		readings.push({ id,name, imageUrl, reading, date, meterNo, town,prevreading:'1234',bill:'GHc0.2',consum:'0.5m3'});
+		readings.push({ id,name, imageUrl, reading, date, meterNo, town,prevreading:'1234 m3',bill:'GHC 0.2',consum:'0.5 m3'});
 		if(index === array.length -1){
 			//set the readings 
 			 setReadings(readings)
