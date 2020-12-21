@@ -8,7 +8,7 @@ const getReadings = async (firebase, id,setReadings) => {
 	let failures=[]
 
 	//database ref to the readings node with status read
-	const readingsRef = firebase.database().ref('readings/122020');
+	const readingsRef = firebase.database().ref('readings2/112020');
 
 
 	//dattabse ref to the failed node with status read 
@@ -53,7 +53,7 @@ failures.push(failed[0])
         //Update meter nodes here
 		const snapshot = await firebase
 			.database()
-			.ref('readings/' + meterNo)
+			.ref('readings2/1120' + meterNo)
 			.once('value');
 		const { reading, date, imageUrl } = snapshot.val();
 
