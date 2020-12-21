@@ -66,9 +66,9 @@ const items = [
 		title: 'Account',
 	},
 	{
-		href: '/home/settings',
+		href: '/home/bill',
 		icon: SettingsIcon,
-		title: 'Settings',
+		title: 'Bills',
 	}
 
 ];

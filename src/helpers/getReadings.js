@@ -8,7 +8,7 @@ const getReadings = async (firebase, id,setReadings) => {
 	let failures=[]
 
 	//database ref to the readings node with status read
-	const readingsRef = firebase.database().ref('readings');
+	const readingsRef = firebase.database().ref('readings/122020');
 
 
 	//dattabse ref to the failed node with status read 

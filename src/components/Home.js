@@ -6,6 +6,7 @@ import { Route,useHistory } from 'react-router-dom';
 import Customers from '../views/customers/Customers';
 import Dashboard from '../views/dashboard/Dashboard';
 import Meter from '../views/meters/Meter';
+import Bill from '../views/bill/Bill'
 
 const useStyles = makeStyles({
 	main: {
@@ -45,6 +46,9 @@ const Home = ({ firebase }) => {
 						</Route>
 						<Route path="/home/meters">
 							<Meter></Meter>
+						</Route>
+						<Route path="/home/bill">
+							<Bill></Bill>
 						</Route>
 					</div>
 			
