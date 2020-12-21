@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import {
 	Button,
@@ -8,9 +8,8 @@ import {
 } from '@material-ui/core';
 import { TextField } from 'formik-material-ui';
 import upperCase from '../../helpers/UpperCase';
-import axios from 'axios'
 
-const useStyles = makeStyles((theme)=>({
+const useStyles = makeStyles((theme) => ({
 	root: {
 		fontSize: '1.4rem',
 		width: '100%',
@@ -29,10 +28,9 @@ const useStyles = makeStyles((theme)=>({
 			marginBottom: '2rem',
 		},
 
-		'& button':{
-			marginRight:'4rem'
-		}
-
+		'& button': {
+			marginRight: '4rem',
+		},
 	},
 	wrapper: {
 		backgroundColor: 'white',
@@ -41,21 +39,28 @@ const useStyles = makeStyles((theme)=>({
 	},
 }));
 
-const AddParams = ({userKey,database}) => {
+const AddParams = ({ userKey, database }) => {
 	const classes = useStyles();
-	const [hideUpdate,sethideUpdate]=useState(true)
-	const [disInput,setDisInput]=useState(false)
-
+	const [hideUpdate, sethideUpdate] = useState(
+		JSON.parse(localStorage.getItem('hideUpdate')) && true
+	);
+	const handleUpdate=()=>{
+		sethideUpdate(!hideUpdate)
+		localStorage.setItem('hideUpdate', JSON.stringify(!hideUpdate));
+		console.log('fuck')
+	}
 
 	return (
 		<div className={classes.root}>
 			<div className={classes.wrapper}>
 				<Formik
-					initialValues={{
-						tariff: '',
-						fee: '',
-						expansion: '',
-					}}
+					initialValues={
+						JSON.parse(localStorage.getItem('bill')) || {
+							tariff: '',
+							fee: '',
+							expansion: '',
+						}
+					}
 					// validate={(values, isSubmitting) => {
 					// 	const errors = {};
 					// 	if (typeof values.tariff !== 'number' && isSubmitting) {
@@ -67,27 +72,24 @@ const AddParams = ({userKey,database}) => {
 					// 	}
 					// 	return errors;
 					// }}
-					onSubmit={async(values,{ setSubmitting}) => {
+					onSubmit={async (values, { setSubmitting }) => {
 						//save into firebase
-						try{
-							sethideUpdate(false)
-							// await database.ref('users/LLW/'+upperCase(userKey)).update(values)
-							const test= (await axios.post('http://us-central1-tpwebsyeeee.cloudfunctions.net/app/web-bill-params/1603702629482',values)).data
-							console.log(test)
-							setSubmitting(false)
-							
+						try {
+							sethideUpdate(false);
+							await database
+								.ref('users/LLW/' + upperCase(userKey))
+								.update(values);
+							//set local storage
+							localStorage.setItem('bill', JSON.stringify(values));
+							localStorage.setItem('hideUpdate', JSON.stringify(!hideUpdate));
+							setSubmitting(false);
+						} catch (err) {
+							console.log(err);
 						}
-						catch(err){
-							console.log(err)
-						}
-
-						
-
 					}}
 				>
 					{({ submitForm, isSubmitting, values }) => (
 						<Form>
-				
 							<Field
 								component={TextField}
 								name="tariff"
@@ -102,8 +104,10 @@ const AddParams = ({userKey,database}) => {
 										</InputAdornment>
 									),
 								}}
+								
 								variant="outlined"
 								placeholder="0.5"
+								disabled={!hideUpdate}
 							/>
 
 							<br />
@@ -121,6 +125,7 @@ const AddParams = ({userKey,database}) => {
 								}}
 								variant="outlined"
 								placeholder="15.5"
+								disabled={!hideUpdate}
 							/>
 							<br />
 							<Field
@@ -134,22 +139,23 @@ const AddParams = ({userKey,database}) => {
 											<strong>%</strong>
 										</InputAdornment>
 									),
+						
 								}}
 								variant="outlined"
 								placeholder="5"
-								
+								disabled={!hideUpdate}
 							/>
 							{isSubmitting && <LinearProgress />}
 							<br />
 							<Button
 								variant="contained"
 								color="primary"
-								// disabled={isSubmitting || values.fee !== '' || values.expansion !=='' || values.tariff !=='' }
+								disabled={!hideUpdate}
 								onClick={submitForm}
 							>
 								save
 							</Button>
-							<Button variant="contained" color="primary" disabled={hideUpdate}>
+							<Button variant="contained" color="primary" disabled={hideUpdate} onClick={handleUpdate}>
 								Update
 							</Button>
 						</Form>
