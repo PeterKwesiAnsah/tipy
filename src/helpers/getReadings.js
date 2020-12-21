@@ -53,7 +53,7 @@ failures.push(failed[0])
         //Update meter nodes here
 		const snapshot = await firebase
 			.database()
-			.ref('readings2/1120' + meterNo)
+			.ref('readings2/112020/' + meterNo)
 			.once('value');
 		const { reading, date, imageUrl } = snapshot.val();
 
