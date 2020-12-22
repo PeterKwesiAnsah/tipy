@@ -8,7 +8,7 @@ const getReadings = async (firebase, id,setReadings) => {
 	let failures=[]
 
 	//database ref to the readings node with status read
-	const readingsRef = firebase.database().ref('readings/');
+	const readingsRef = firebase.database().ref('readings2/112020');
 
 
 	//dattabse ref to the failed node with status read 
@@ -49,11 +49,11 @@ failures.push(failed[0])
 	update(failures,firebase,'failed')
 	
 
-	rows.forEach(async ({id, name, town, meterNo, ...rest },index,array) => {
+	rows.forEach(async ({id, name, town, meterNo },index,array) => {
         //Update meter nodes here
 		const snapshot = await firebase
 			.database()
-			.ref('readings/' + meterNo)
+			.ref('readings2/112020/' + meterNo)
 			.once('value');
 		const { reading, date, imageUrl } = snapshot.val();
 
@@ -61,6 +61,7 @@ failures.push(failed[0])
 		if(index === array.length -1){
 			//set the readings 
 			 setReadings(readings)
+			 console.log(readings)
 		}
 	
 	});	
