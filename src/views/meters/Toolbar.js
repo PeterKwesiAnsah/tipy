@@ -16,7 +16,7 @@ import { Search as SearchIcon } from 'react-feather';
 const useStyles = makeStyles((theme) => ({
 	root: {
 		fontSize: '1.4rem',
-		padding: '1.5rem',
+		padding: '1rem',
 		'& *': {
 			fontSize: 'inherit',
 		},
@@ -32,6 +32,16 @@ const useStyles = makeStyles((theme) => ({
 	exportButton: {
 		height: 'fit-content',
 	},
+	flex:{
+		'@media only screen and (max-width:62.5em)':{
+			flexDirection:'column-reverse',
+			alignItems:'center',
+			'& > a':{
+				marginBottom:'1.5rem'
+			}
+
+		}
+	}
 }));
 
 const Toolbar = ({ search, className, data, ...rest }) => {
@@ -44,7 +54,7 @@ const Toolbar = ({ search, className, data, ...rest }) => {
 
 	return (
 		<div className={clsx(classes.root, className)} {...rest}>
-			<Box display="flex" justifyContent="space-between">
+			<Box display="flex" justifyContent="space-between" className={classes.flex}>
 				<PendMeters></PendMeters>
 				{/* // data={exportData(data)}
 					// filename={`CustomersExport${getDate()}.csv`}

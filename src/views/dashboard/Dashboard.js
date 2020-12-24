@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 	center: {
 		width: '100%',
 		display: 'grid',
-		placeItems: 'center',
+		placeItems: 'center'
 	},
 	flex: {
 		display: 'flex !important',
