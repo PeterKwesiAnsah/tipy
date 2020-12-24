@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
 		paddingTop: theme.spacing(3),
 		backgroundColor: 'rgb(244, 246, 248)',
 		fontSize: '1.5rem',
+		overflow:'hidden',
 		'& *': {
 			fontSize: 'inherit',
 		},
@@ -39,7 +40,11 @@ const useStyles = makeStyles((theme) => ({
 		margin: '2rem !important',
 		'& > div': {
 			marginRight: 'inherit !important',
+			marginBottom:'1.5rem'
 		},
+		'@media only screen and (max-width:62.5em)':{
+			flexDirection:'column'
+		}
 	},
 }));
 //save count to local storage

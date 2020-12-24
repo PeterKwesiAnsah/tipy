@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
 		height: '100%',
 		display: 'grid',
 		placeItems: 'center',
+		overflow:'hidden',
 		gap: '2rem',
 		'& *': {
 			fontSize: 'inherit',
@@ -34,9 +35,20 @@ const useStyles = makeStyles((theme) => ({
 	},
 	wrapper: {
 		backgroundColor: 'white',
-		padding: '5rem 15rem',
+		padding: '5rem',
 		borderRadius: '1rem',
 	},
+	buttons:{
+		display:'flex',
+		alignItems:'center',
+		'@media only screen and (max-width:62.5em)':{
+			flexDirection:'column',
+			'& > button':{
+				marginBottom:'1rem'
+			}
+		}
+
+	}
 }));
 
 const AddParams = ({ userKey, database }) => {
@@ -147,6 +159,7 @@ const AddParams = ({ userKey, database }) => {
 							/>
 							{isSubmitting && <LinearProgress />}
 							<br />
+							<div className={classes.buttons}>
 							<Button
 								variant="contained"
 								color="primary"
@@ -158,6 +171,8 @@ const AddParams = ({ userKey, database }) => {
 							<Button variant="contained" color="primary" disabled={hideUpdate} onClick={handleUpdate}>
 								Update
 							</Button>
+							</div>
+							
 						</Form>
 					)}
 				</Formik>

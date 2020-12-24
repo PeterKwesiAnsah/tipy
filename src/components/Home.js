@@ -1,20 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Topbar from '../layout/Dashboard/Topbar';
 import LeftPane from '../layout/Main/LeftPane.js';
+import NavPane from '../layout/Main/NavPane.js'
 import { makeStyles } from '@material-ui/core';
-import { Route,useHistory } from 'react-router-dom';
+import { Route, useHistory } from 'react-router-dom';
 import Customers from '../views/customers/Customers';
 import Dashboard from '../views/dashboard/Dashboard';
 import Meter from '../views/meters/Meter';
-import Bill from '../views/bill/Bill'
+import Bill from '../views/bill/Bill';
+import Backdrop from '@material-ui/core/Backdrop';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
 	main: {
 		display: 'flex',
 	},
-});
+	home: {
+		width: '80vw',
+		backgroundColor: '#F4F6F8',
+		height: '100vh',
+		'@media only screen and (max-width:62.5em)': {
+			width: '100vw',
+		},
+	},
+
+	backdrop: {
+		zIndex: theme.zIndex.drawer + 8,
+		position: 'fixed',
+		width: '100vw',
+		height: '100vh',
+		color:'#fff',
+		justifyContent:'end'
+	},
+}));
 
 const Home = ({ firebase }) => {
+	//nav bar state
+	const [showNav, setShowNav] = useState(false);
+
 	const classes = useStyles();
 
 	const history = useHistory();
@@ -31,28 +53,35 @@ const Home = ({ firebase }) => {
 				// An error happened.
 			});
 	};
+	console.log(showNav);
 
 	return (
 		<div>
-			<Topbar logout={logout}></Topbar>
+			<Topbar logout={logout} Navbar={{ setShowNav, showNav }}></Topbar>
 			<main className={classes.main}>
 				<LeftPane></LeftPane>
-					<div style={{ width: '80vw', backgroundColor: '#F4F6F8' }}>
-						<Route path="/home/customers">
-							<Customers></Customers>
-						</Route>
-						<Route path="/home/dashboard">
-							<Dashboard></Dashboard>
-						</Route>
-						<Route path="/home/meters">
-							<Meter></Meter>
-						</Route>
-						<Route path="/home/bill">
-							<Bill></Bill>
-						</Route>
-					</div>
-			
+				<div className={classes.home}>
+					<Route path="/home/customers">
+						<Customers></Customers>
+					</Route>
+					<Route path="/home/dashboard">
+						<Dashboard></Dashboard>
+					</Route>
+					<Route path="/home/meters">
+						<Meter></Meter>
+					</Route>
+					<Route path="/home/bill">
+						<Bill></Bill>
+					</Route>
+				</div>
 			</main>
+			<Backdrop
+				className={classes.backdrop}
+				open={showNav}
+				onClick={() => setShowNav(false)}
+			>
+				<NavPane></NavPane>
+			</Backdrop>
 		</div>
 	);
 };

@@ -20,18 +20,15 @@ const user = {
 
 const useStyles = makeStyles({
 	leftPane: {
-		width: '20vw',
-		height: '100%',
-		'@media only screen and (max-width:62.5em)':{
-			display:'none'
-		}
+		minWidth: '30vw',
+        height: '100%',
+        backgroundColor:'#fff'
 	},
 	avatar: {
 		cursor: 'pointer',
 		width: 64,
 		height: 64,
 	},
-
 	avatarBox: {
 		alignItems: 'center',
 		display: 'flex',
@@ -80,7 +77,7 @@ const LeftPane = ({showNav}) => {
 	const classes = useStyles();
 
 	return (
-		<div className={classes.leftPane} style={{display:`${'block' && showNav}`}}>
+		<div className={classes.leftPane}>
 			<div className={classes.avatarBox}>
 				<Avatar
 					className={classes.avatar}
