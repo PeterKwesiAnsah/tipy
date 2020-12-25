@@ -44,9 +44,9 @@ failures.push(failed[0])
 	
 
 
-    //update meter readings for the meters read
-	update(rows,firebase,'read')
-	update(failures,firebase,'failed')
+    // //update meter readings for the meters read
+	// update(rows,firebase,'read')
+	// update(failures,firebase,'failed')
 	
 
 	rows.forEach(async ({id, name, town, meterNo },index,array) => {

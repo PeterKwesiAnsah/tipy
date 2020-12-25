@@ -5,7 +5,6 @@ import { useTheme } from '@material-ui/core/styles';
 import InputIcon from '@material-ui/icons/Input';
 import DehazeIcon from '@material-ui/icons/Dehaze';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import '../../LeftPane.css'
 
 const useStyles = makeStyles({
 	root: {
