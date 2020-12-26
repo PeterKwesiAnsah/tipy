@@ -17,7 +17,7 @@ const useStyles = makeStyles({
 		fontSize: '1.15rem',
 	},
 	root: {
-		width:'80%',
+		width:'100%',
 		'&:hover': {},
 		'& input': {
 			fontSize: '1.5rem',
