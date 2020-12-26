@@ -13,11 +13,11 @@ import classnames from 'classnames';
 
 const useStyles = makeStyles({
 	button: {
-		width: '20%',
-		borderRadius: '1rem',
+		width: '80%',
 		fontSize: '1.15rem',
 	},
 	root: {
+		width:'80%',
 		'&:hover': {},
 		'& input': {
 			fontSize: '1.5rem',
@@ -34,6 +34,9 @@ const useStyles = makeStyles({
 		},
 		'& a': {
 			color: '#32CD32',
+		},
+		'& .MuiInputLabel-outlined.MuiInputLabel-shrink': {
+			transform: 'translate(12px, -13px) scale(0.75)',
 		},
 	},
 	text: {
@@ -97,6 +100,7 @@ const AuthUser = () => {
 					value={user.email}
 					onChange={handleChange}
 					error={user.signin === 'failed'}
+					variant="outlined"
 				/>
 				<TextField
 					label="Password"
@@ -106,6 +110,7 @@ const AuthUser = () => {
 					onChange={handleChange}
 					error={user.signin === 'failed'}
 					helperText={user.signin === 'failed' && 'Incorrect Email/Password.'}
+					variant="outlined"
 				/>
 				<Button
 					className={classes.button}
