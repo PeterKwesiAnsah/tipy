@@ -13,7 +13,7 @@ import classnames from 'classnames';
 
 const useStyles = makeStyles({
 	button: {
-		width: '80%',
+		width: '100%',
 		fontSize: '1.15rem',
 	},
 	root: {
