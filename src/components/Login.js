@@ -9,8 +9,8 @@ const Signin = () => {
             <AuthUser></AuthUser>
         </div>
         <div className='signin__box'>
-            <span className='text--light'>what you can do</span>
-            <span className='text--bold'>Does not depend on where you are</span>
+            {/* <span className='text--light'>what you can do</span>
+            <span className='text--bold'>Does not depend on where you are</span> */}
              </div>
         </div>
         </div>
