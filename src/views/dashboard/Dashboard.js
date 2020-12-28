@@ -66,7 +66,7 @@ const Dashboard = () => {
 				<Button
 					variant="contained"
 					color="primary"
-					onclick={() => {
+					onClick={() => {
 						axios.get(
 							'http://us-central1-tpwebsyeeee.cloudfunctions.net/app/requestrds/1603702629482'
 						);

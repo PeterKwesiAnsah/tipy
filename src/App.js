@@ -63,6 +63,8 @@ const App = () => {
 
 		}
 	}, []);
+	console.log(firebase.auth()?.currentUser)
+	
 
 	useEffect(() => {
 		//creating a listener when the auth state chanages

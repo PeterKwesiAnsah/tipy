@@ -35,7 +35,10 @@ const Topbar = ({ logout,Navbar }) => {
 	const classes = useStyles();
 
 	//get navbar states
-	const {setShowNav,showNav}=Navbar
+	// const {setShowNav,showNav}=Navbar
+
+	const setShowNav=Navbar?.setShowNav
+	const showNav=Navbar?.showNav
 
 	return (
 		<div
