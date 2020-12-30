@@ -55,9 +55,11 @@ const Profile = ({ className, firebase, ...rest }) => {
 	const trigger = () => {
 		//trigger a click event on the input file
 		imageInputRef.current.click();
+		
 	};
 
 	const upLoadImage = async ({ target }) => {
+		setUpdating(true);
 		//root storage ref
 		const storageRef = firebase.storage().ref();
 		//ref to image
@@ -74,15 +76,19 @@ const Profile = ({ className, firebase, ...rest }) => {
 				photoURL: URL,
 			});
 
-			setUpdating(true);
+			setUpdating(false);
 		} catch (e) {
 			console.log(e);
 		}
+		console.log('On Changed')
 	};
 
+	console.log(updating)
+
 	return (
-		<Card className={clsx(classes.root, className)} {...rest}>
-			<CardContent>
+		<Card className={clsx(classes.root, className)} {...rest} >
+			{updating && <LinearProgress></LinearProgress>}
+			<CardContent style={{opacity:updating &&'0.5'}}>
 				<Box alignItems="center" display="flex" flexDirection="column">
 					<Avatar
 						className={classes.avatar}
@@ -112,7 +118,7 @@ const Profile = ({ className, firebase, ...rest }) => {
 					className={classes.inputImage}
 					ref={imageInputRef}
 					onChange={upLoadImage}
-					accept=".jpg,.png"
+					accept=".jpg,.png,.JPEG"
 				></input>
 				<Button color="primary" fullWidth variant="text" onClick={trigger}>
 					Upload picture

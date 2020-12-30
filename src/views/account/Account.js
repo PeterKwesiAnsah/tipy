@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Account = ({firebase,id}) => {
+const Account = ({firebase}) => {
   const classes = useStyles();
 
   return (
