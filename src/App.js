@@ -53,17 +53,18 @@ const App = () => {
 		}
 	);
 
-	useEffect(() => {
-		//creating a listener for listening when the route changes
-		// history.listen(({pathname})=>{
-		// 	if(pathname !== '/' && user.length > 0)
-		// })
+	// useEffect(() => {
+	// 	//creating a listener for listening when the route changes
+	// 	// history.listen(({pathname})=>{
+	// 	// 	if(pathname !== '/' && user.length > 0)
+	// 	// })
 
-		const fetchCount=()=>{
+	// 	const fetchCount=()=>{
 
-		}
-	}, []);
-	console.log(firebase.auth()?.currentUser)
+	// 	}
+	// }, []);
+
+	// console.log(firebase.auth()?.currentUser)
 	
 
 	useEffect(() => {
@@ -112,13 +113,13 @@ const App = () => {
 						<Message></Message>
 					</Route>
 					<Route path="/home">
-						<Home firebase={firebase}></Home>
+						<Home firebase={firebase} id={user[0]}></Home>
 					</Route>
 					<Route path="/import">
 						<CustomImport firebase={firebase} user={user}></CustomImport>
 					</Route>
 					<Route path="/export-monthly-readings">
-						<Export firebase={firebase} id={user[0]}></Export>
+						<Export firebase={firebase}></Export>
 					</Route>
 				</Switch>
 			</UserContext.Provider>

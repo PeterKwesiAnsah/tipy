@@ -29,7 +29,6 @@ const useStyles = makeStyles({
 });
 
 
-
 const Topbar = ({ logout,Navbar }) => {
 	const mediaQuery=useMediaQuery('@media only screen and (max-width:62.5em)')
 	const classes = useStyles();

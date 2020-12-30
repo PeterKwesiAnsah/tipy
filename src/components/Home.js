@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core';
 import { Route, useHistory } from 'react-router-dom';
 import Customers from '../views/customers/Customers';
 import Dashboard from '../views/dashboard/Dashboard';
+import Account from '../views/account/Account'
 import Meter from '../views/meters/Meter';
 import Bill from '../views/bill/Bill';
 import Backdrop from '@material-ui/core/Backdrop';
@@ -33,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const Home = ({ firebase }) => {
+const Home = ({ firebase ,id}) => {
 	//nav bar state
 	const [showNav, setShowNav] = useState(false);
 
@@ -53,7 +54,6 @@ const Home = ({ firebase }) => {
 				// An error happened.
 			});
 	};
-	console.log(showNav);
 
 	return (
 		<div>
@@ -72,6 +72,9 @@ const Home = ({ firebase }) => {
 					</Route>
 					<Route path="/home/bill">
 						<Bill></Bill>
+					</Route>
+					<Route path="/home/account">
+						<Account firebase={firebase} id={id}></Account>
 					</Route>
 				</div>
 			</main>
