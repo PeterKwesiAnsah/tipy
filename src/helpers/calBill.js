@@ -5,6 +5,7 @@ const fee=bill?.fee
 const expansion=bill?.expansion
 
 
+
 export const grossCal = (prev, current) =>
 	(parseInt(current) - parseInt(prev)) * tariff;
 export const netCal = (gross) =>
