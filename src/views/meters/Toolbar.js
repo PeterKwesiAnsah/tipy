@@ -65,7 +65,7 @@ const Toolbar = ({ search, className, data, ...rest }) => {
 					className={classes.exportButton}
 					href="/export-monthly-readings"
 				>
-					Consumption Data
+					Export
 				</Button>
 			</Box>
 			<Box mt={3}>

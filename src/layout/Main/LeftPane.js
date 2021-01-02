@@ -61,7 +61,7 @@ const items = [
 	{
 		href:'/home/meters',
 		icon:MeterIcon,
-		title:'Meters'
+		title:'Readings'
 	},
 	{
 		href: '/home/account',
