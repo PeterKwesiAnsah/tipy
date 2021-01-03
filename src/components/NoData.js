@@ -2,7 +2,7 @@ import React from 'react'
 import {ReactComponent as SearchIcon} from '../img/search.svg'
 import {Typography,Button,makeStyles} from '@material-ui/core'
 
-const useStyles=makeStyles({
+const useStyles=makeStyles(theme=>({
     root:{
         fontSize:'1.5rem',
         display:'flex',
@@ -14,8 +14,8 @@ const useStyles=makeStyles({
         '& svg':{
             width: '6.3rem !important',
             height: '6.3rem !important', 
-            fill:'#808080',
-            margin:'5rem 0'
+            fill:theme.palette.secondary.main,
+            margin:'3rem 0'
     
         },
         '& p':{
@@ -25,15 +25,16 @@ const useStyles=makeStyles({
         }
     }
 
-})
+}))
 
-const NoData = () => {
+const NoData = ({children,button}) => {
     const classes=useStyles()
     return (
         <div className={classes.root}>
-            <Typography>No Data Available</Typography>
+            <Typography>{children}</Typography>
             <SearchIcon></SearchIcon>
-            <Button variant="contained" color="primary" href="/import">Add Customers</Button>
+            {/* <Button variant="contained" color="primary" href="/import">Add Customers</Button> */}
+            {button}
         </div>
     )
 }
