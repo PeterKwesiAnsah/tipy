@@ -47,7 +47,6 @@ const useStyles = makeStyles((theme) => ({
 				marginBottom:'1rem'
 			}
 		}
-
 	}
 }));
 
@@ -89,7 +88,7 @@ const AddParams = ({ userKey, database }) => {
 						try {
 							sethideUpdate(false);
 							await database
-								.ref('users/LLW/' + upperCase(userKey))
+								.ref('users/LLW/' + upperCase(userKey)+'/billParams')
 								.update(values);
 							//set local storage
 							localStorage.setItem('bill', JSON.stringify(values));

@@ -1,9 +1,10 @@
-const upperCase=(name)=>{
-const strArray=[...name]
-strArray[0]=strArray[0].toUpperCase()
-const newString=strArray.join("")
-return newString
+const upperCase = (name) => {
+    if(name){
+        const strArray = [...name];
+        strArray[0] = strArray[0].toUpperCase();
+        const newString = strArray.join('');
+        return newString;
+    }
 
-}
-export default upperCase
-
+};
+export default upperCase;
