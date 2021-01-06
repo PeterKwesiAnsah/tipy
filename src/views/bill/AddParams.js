@@ -21,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
 		'& *': {
 			fontSize: 'inherit',
 		},
-
 		'& > *': {
 			marginBottom: '2rem',
 		},

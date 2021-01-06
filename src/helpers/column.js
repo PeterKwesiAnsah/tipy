@@ -43,20 +43,21 @@ export default {
 		{ field: 'reading', headerName: 'CurrentReading', width: 130 },
 		{ field: 'prevReading', headerName: 'PrevReading', width: 130 },
 		{ field: 'bill', headerName: 'Bill', width: 130 },
-		{field:'consum',headerName:'Consumption', width:130},
+		{ field: 'consum', headerName: 'Consumption', width: 130 },
 		{ field: 'town', headerName: 'Town', width: 130 },
 		{ field: 'date', headerName: 'Date of Reading', width: 130 },
 
-	
 		{
 			field: 'imageUrl',
 			headerName: 'Image',
 			renderCell: (params) => (
-				<img
-					src={params.value}
-					alt="Tipy........Location Errand Technology"
-					style={{ width: '100%' }}
-				></img>
+				<a href={params.value} target="_blank" rel="noopener noreferrer">
+					<img
+						src={params.value}
+						alt="Tipy........Location Errand Technology"
+						style={{ width: '100%', cursor: 'pointer' }}
+					></img>
+				</a>
 			),
 		},
 	],
