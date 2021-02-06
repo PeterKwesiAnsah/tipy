@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core';
 import { UserContext } from '../App';
 import { useHistory } from 'react-router-dom';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme=>({
 	root: {
 		'& input': {
 			fontSize: '1.5rem',
@@ -25,12 +25,17 @@ const useStyles = makeStyles({
 	form: {
 		display: 'grid',
 		gridTemplateColumns: 'repeat(2,1fr)',
+		'@media only screen and (max-width:33.75em)': {
+			gridTemplateColumns: '1fr',
+			gridTemplateRows: 'repeat(6,max-content)',
+			width:'100%'
+		},
 		gap: '2.5rem',
 	},
 	button: {
 		borderRadius: '3rem',
 	},
-});
+}));
 
 const AddUserData = () => {
 	const classes = useStyles();

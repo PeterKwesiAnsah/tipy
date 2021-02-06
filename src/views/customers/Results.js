@@ -5,7 +5,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import filters from '../../helpers/filters'
+import filters from '../../helpers/filters';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -31,43 +31,61 @@ const useStyles = makeStyles((theme) => ({
 	selectEmpty: {
 		marginTop: theme.spacing(2),
 	},
+	form: {
+		backgroundColor: '#fff',
+		borderRadius: '0.5rem',
+		marginBottom: '2rem',
+		padding: '1rem',
+		boxShadow:
+			'0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)',
+	},
+	dataGrid: {
+		backgroundColor: '#fff',
+		borderRadius: '0.5rem',
+		width: '100%',
+		height: '100%',
+	},
 }));
 
-
-const Results = ({ data, search,columns,type }) => {
+const Results = ({ data, search, columns, type, children, NoData }) => {
 	const classes = useStyles();
+
+	console.log(NoData);
 
 	const [perPage, setPerPage] = React.useState(5);
 
 	const handleChange = (event) => {
 		setPerPage(event.target.value);
 	};
- //handles filterimg of data
-	const filtered =filters[type](search,data)
-
+	//handles filterimg of data
+	const filtered = filters[type](search, data);
 
 	//filter the data here
 	return (
 		<div style={{ height: 400, width: '80vw' }} className={classes.root}>
-			<FormControl className={classes.formControl} >
-				<InputLabel id="demo-simple-select-label">Rows Per Page</InputLabel>
-				<Select
-					labelId="demo-simple-select-label"
-					id="demo-simple-select"
-					value={perPage}
-					onChange={handleChange}
-				>
-					<MenuItem value={5}>5</MenuItem>
-					<MenuItem value={20}>20</MenuItem>
-					<MenuItem value={30}>30</MenuItem>
-				</Select>
-			</FormControl>
-			<DataGrid
-				columns={columns}
-				rows={filtered}
-				pageSize={perPage}
-				loading={filtered.length === 0 ? true:false}
-			></DataGrid>
+			<div className={classes.form}>
+				<FormControl className={classes.formControl} variant="outlined">
+					<Select
+						labelId="demo-simple-select-label"
+						id="demo-simple-select"
+						value={perPage}
+						onChange={handleChange}
+					>
+						<MenuItem value={5}>5</MenuItem>
+						<MenuItem value={20}>20</MenuItem>
+						<MenuItem value={30}>30</MenuItem>
+					</Select>
+				</FormControl>
+				{children}
+			</div>
+			<div className={classes.dataGrid}>
+				<DataGrid
+					columns={columns}
+					rows={filtered}
+					pageSize={perPage}
+					loading={filtered.length === 0 && NoData}
+				></DataGrid>
+			</div>
 		</div>
 	);
 };

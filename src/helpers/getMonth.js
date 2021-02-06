@@ -1,16 +1,16 @@
 const months = {
-	'01': 'january',
-	'02': 'febuary',
-	'03': 'march',
-	'04': 'april',
-	'05': 'may',
-	'06': 'june',
-	'07': 'july',
-	'08': 'august',
-	'09': 'september',
-	"10": 'october',
-	"11": 'november',
-	"12": 'december',
+	january: '01',
+	febuary: '02',
+	march: '03',
+	april: '04',
+	may: '05',
+	june: '06',
+	july: '07',
+	august: '08',
+	september: '09',
+	october: '10',
+	november: '11',
+	december: '12',
 };
 
 export default (month) => months[month];

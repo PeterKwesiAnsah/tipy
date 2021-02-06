@@ -4,7 +4,7 @@ import prevCurrent from '../helpers/prevCurrent';
 import { grossCal, netCal, meterCons } from '../helpers/calBill';
 import upperCase from '../helpers/UpperCase';
 
-const getReadings = async (firebase, llwid, setReadings) => {
+const getReadings = async (firebase, llwid, setReadings,curMonth) => {
 	//data for meter  readings
 	let rows = [];
 	let readings = [];
@@ -15,7 +15,7 @@ const getReadings = async (firebase, llwid, setReadings) => {
 	const refBillString = `users/LLW/${upperCase(email)}/billParams`;
 
 	//database ref to the readings node with status read
-	const readingsRef = firebase.database().ref(`readings2/${llwid}/122020`);
+	const readingsRef = firebase.database().ref(`readings2/${llwid}/${curMonth}`);
 
 	//dattabse ref to the failed node with status read
 	const failedref = firebase.database().ref('failed');
@@ -68,7 +68,7 @@ const getReadings = async (firebase, llwid, setReadings) => {
 
 			// const billSnapshot = await firebase
 			// .database()
-			// .ref(`readings2/${llwid}/122020/` + meterNo+'/dataBill')
+			// .ref(`readings2/${llwid}/${curMonth}/` + meterNo+'/dataBill')
 			// .once('value');
 
 			///pick the bill parameters from here
@@ -76,7 +76,7 @@ const getReadings = async (firebase, llwid, setReadings) => {
 			//Update meter nodes here
 			const snapshot = await firebase
 				.database()
-				.ref(`readings2/${llwid}/122020/` + meterNo)
+				.ref(`readings2/${llwid}/${curMonth}/` + meterNo)
 				.once('value');
 
 			const { id, reading, date, imageUrl } = snapshot.val();
@@ -112,7 +112,7 @@ const getReadings = async (firebase, llwid, setReadings) => {
 					//save data
 					await firebase
 						.database()
-						.ref(`readings2/${llwid}/122020/` + meterNo + '/billdata')
+						.ref(`readings2/${llwid}/${curMonth}/` + meterNo + '/billdata')
 						.update({ prevReading, bill, meterWaterCons });
 				} catch (e) {
 					console.log(e);
@@ -127,7 +127,7 @@ const getReadings = async (firebase, llwid, setReadings) => {
 				//Update meter nodes here
 				const snapshot = await firebase
 					.database()
-					.ref(`readings2/${llwid}/122020/` + meterNo + '/billdata')
+					.ref(`readings2/${llwid}/${curMonth}/` + meterNo + '/billdata')
 					.once('value');
 				//Get bill values if it exists
 				const { prevReading, bill, meterWaterCons } = snapshot.val();

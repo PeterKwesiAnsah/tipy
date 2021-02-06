@@ -1,9 +1,8 @@
-import getMonth from '../helpers/getMonth';
-
 export default {
 	meters: (search, array) =>
-		array.filter(({ date }) =>
-			getMonth(date.split('/')[1]).includes(search.toLowerCase())
+		array.filter(({ name }) =>
+			// getMonth(date.split('/')[1]).includes(search.toLowerCase())
+			name.toLowerCase().includes(search.toLowerCase())
 		),
 	customers: (search, array) =>
 		array.filter(({ name }) =>

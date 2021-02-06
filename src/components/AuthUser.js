@@ -11,7 +11,7 @@ import classnames from 'classnames';
 
 //IF SIGIN IS NULL THE USER HASN'T TRIED LOGGING IN ELSE FAILED /SUCCESS
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme=>({
 	button: {
 		width: '100%',
 		fontSize: '1.15rem',
@@ -46,8 +46,9 @@ const useStyles = makeStyles({
 	},
 	svg: {
 		marginBottom: '4rem',
+		
 	},
-});
+}));
 
 const AuthUser = () => {
 	//creating a global state

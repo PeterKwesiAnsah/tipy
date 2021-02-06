@@ -7,9 +7,10 @@ const useAutoFetch = () => {
 	useEffect(() => {
 		setTimeout(() => {
 			if (data.length === 0) {
+				console.log('autoFetch was runn')
 				setautoFetch(true);
 			}
-		},5000);
+		},4000);
 
 		return () => {
 			clearTimeout();

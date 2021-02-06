@@ -5,7 +5,7 @@ import logoB from '../img/logoB.png';
 import { ReactComponent as SignSVG } from '../img/signin.svg';
 import AddUserData from './AddUserData';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
 	root: {
 		height: '100vh',
 	},
@@ -19,21 +19,35 @@ const useStyles = makeStyles({
 		width: '7%',
 		objectFit: 'scale-down',
 		height: '3rem',
+		minWidth: theme.spacing(8.5),
 	},
 	main: {
 		display: 'grid',
 		gridTemplateColumns: 'repeat(2,1fr)',
-        padding: '6rem',
-        paddingRight:'3rem',
+		'@media only screen and (max-width:62.5em)': {
+			gridTemplateColumns: '1fr',
+		},
+		padding: '6rem',
+		paddingRight: '3rem',
 		height: '90vh',
 		alignContent: 'center',
-		gap: '5rem',
-    },
-    heading:{
-        marginBottom:'8rem',
-        fontWeight:'400'
-      }
-});
+		gap: '1rem',
+	},
+	heading: {
+		marginBottom: '8rem',
+		fontWeight: '400',
+		'@media only screen and (max-width:33.75em)': {
+			marginBottom: '2rem',
+			fontSize:theme.spacing(4)
+		},
+	},
+	Up: {
+		width: theme.spacing(56),
+		'@media only screen and (max-width:62.5em)': {
+			display: 'none',
+		},
+	},
+}));
 
 const SignUp = () => {
 	const classes = useStyles();
@@ -48,7 +62,6 @@ const SignUp = () => {
 				></img>
 				<div>
 					<Typography variant="h5">
-						Do you have an Account?{' '}
 						<Button
 							variant="outlined"
 							color="primary"
@@ -68,7 +81,7 @@ const SignUp = () => {
 					</Typography>
 					<AddUserData></AddUserData>
 				</div>
-				<SignSVG></SignSVG>
+				<SignSVG className={classes.Up}></SignSVG>
 			</main>
 		</div>
 	);
