@@ -79,6 +79,7 @@ const Customers = () => {
 		};
 	}, [autoFetch]);
 
+console.log(data)
 	return (
 		<div>
 			<Toolbar
